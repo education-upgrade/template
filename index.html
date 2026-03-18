@@ -1,0 +1,4207 @@
+<head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>SUBJECT TITLE</title>
+ 
+   <!-- PWA essentials (keep if you use them) -->
+   <!-- Manifest version query ensures browsers reload updated icons and metadata -->
+   <link rel="manifest" href="manifest.webmanifest?v=3">
+   <link rel="apple-touch-icon" href="apple-touch-icon.png?v=3">
+   <meta name="theme-color" content="#f3f7fb">
+   <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3">
+   <link rel="preload" as="image" href="section-bg.jpg?v8">
+ <style>
+     /* ======================================================
+        LIGHT PASTEL BLUE THEME (eye-safe)
+        ====================================================== */
+ 
+     :root{
+       /* Background image used inside cards on all non-Home tabs */
+       --sectionCardBg: url("./section-bg.jpg");
+       --paleBlueBgFilter: saturate(.39) brightness(1.08) contrast(.95) hue-rotate(168deg);
+       --paleBlueBgMask: linear-gradient(180deg, rgba(214,231,247,.21), rgba(233,243,252,.30));
+ 
+       --bg:#f8fbff;
+       --surface:#f2f6fb;
+       --card:#f6f9fe;
+       --line:rgba(30,60,100,.24);
+ 
+       --text:#162840;
+     nav{
+       position:relative;
+       z-index:1;
+     }
+ 
+     main{
+       max-width:1100px;
+       margin:0 auto;
+       padding:16px 16px calc(var(--navH) + env(safe-area-inset-bottom) + 16px);
+     }
+ 
+     /* =========================
+        CARDS (flat, no overlap)
+        ========================= */
+     .card{
+       background:var(--card);
+       border:1px solid var(--line);
+       border-radius:var(--radius);
+       padding:16px;
+       box-shadow:var(--shadow);
+       margin-bottom:14px;
+     }
+ 
+     /* =========================
+        CARD BACKDROP (NON-HOME TABS)
+       Subtle subject placeholder image inside cards on all non-Home tabs
+        ========================= */
+     section.tabpane:not(#home) .card{
+       position:relative;
+       overflow:hidden;
+       isolation:isolate;
+       background:
+         linear-gradient(165deg, color-mix(in srgb, var(--accent3) 42%, #ffffff 58%), color-mix(in srgb, var(--accent2) 20%, #ffffff 80%));
+       border-color: color-mix(in srgb, var(--line) 70%, var(--accent2) 30%);
+     }
+     section.tabpane:not(#home) .card::before{
+       content:"";
+       position:absolute;
+       inset:0;
+       background-image: var(--sectionCardBg);
+       background-size: cover;
+       background-position: center;
+       background-repeat:no-repeat;
+       opacity:.12;
+       filter: var(--paleBlueBgFilter);
+       transform: scale(1.05);
+       z-index:0;
+       pointer-events:none;
+     }
+     section.tabpane:not(#home) .card::after{
+       content:"";
+         <button class="checkRow checkRowBtn" id="goDailyAct2" type="button" aria-label="Open second Daily Challenge activity">
+           <span class="checkDot" id="chkAct2Dot"><svg class="checkIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 8-12h-6z"></path></svg></span>
+         </button>
+         <button class="checkRow checkRowBtn" id="goDailyAct3" type="button" aria-label="Open third Daily Challenge activity">
+           <span class="checkDot" id="chkAct3Dot"><svg class="checkIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v18"></path><path d="M3 12h18"></path></svg></span>
+         </button>
+       </div>
+ 
+       <button class="protectBtn" id="protectStreakBtn" type="button"><span class="protectBtnText"><span class="protectBtnTitle">Continue learning</span><span class="protectBtnTopic">Your next task</span></span></button>
+     </div>
+ 
+     <div class="card homeSecondaryCard streakAwardsPanel" aria-label="Streak awards">
+       <div class="streakAwardsHeader">Streak awards</div>
+       <div class="streakAwardsRow">
+         <div class="streakAward" id="streakAward5" aria-label="Bronze coin at 5 days"><span class="streakAwardIcon" aria-hidden="true">🥉</span><span class="streakAwardLabel"><span class="streakAwardLabelNumber">5</span><span class="streakAwardLabelUnit">Days</span></span></div>
+         <div class="streakAward" id="streakAward10" aria-label="Silver coin at 10 days"><span class="streakAwardIcon" aria-hidden="true">🥈</span><span class="streakAwardLabel"><span class="streakAwardLabelNumber">10</span><span class="streakAwardLabelUnit">Days</span></span></div>
+         <div class="streakAward" id="streakAward15" aria-label="Gold coin at 15 days"><span class="streakAwardIcon" aria-hidden="true">🥇</span><span class="streakAwardLabel"><span class="streakAwardLabelNumber">15</span><span class="streakAwardLabelUnit">Days</span></span></div>
+         <div class="streakAward" id="streakAward20" aria-label="Diamond at 20 days"><span class="streakAwardIcon" aria-hidden="true">💎</span><span class="streakAwardLabel"><span class="streakAwardLabelNumber">20</span><span class="streakAwardLabelUnit">Days</span></span></div>
+       </div>
+     </div>
+ 
+     <div class="card valuePropCard homeTertiaryCard">
+       <div class="row" style="justify-content:space-between">
+         <div>
+           <div style="font-weight:900;font-size:16px">Learning Journey</div>
+          <div class="note">Progress through the subject journey in chronological order. Complete the next stage node to move forward.</div>
+         </div>
+       </div>
+       <div id="journeyMapMount" class="journeyMapMount">
+         <div class="journeyMapImageWrap" aria-hidden="true">
+           <video class="journeyMapImage" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+             <source src="Lesson infographics/russia-journey-map.MP4" type="video/mp4">
+           </video>
+         </div>
+         <div id="journeyStopsLayer" class="journeyStopsLayer" aria-label="Learning journey route map"></div>
+       </div>
+       <div class="divider"></div>
+       <div id="topicDash" class="topicDash"></div>
+     </div>
+ 
+     <div class="card homeTertiaryCard">
+       <details id="homeDetailsAccordion">
+         <summary style="font-weight:900;cursor:pointer;list-style:none">Stats</summary>
+         <div class="divider" style="margin-top:10px"></div>
+ 
+         <div class="row" style="gap:8px; flex-wrap:wrap; margin-top:10px">
+           <div class="pill streakMiniPill" aria-label="Best streak">
+             <span class="streakMiniLabel">Best</span>
+             <span class="streakMiniNum" id="streakBestNum">0</span>
+           </div>
+           <div class="pill streakMiniPill" aria-label="Reset timer">
+         <details class="studyAdjustPanel" id="studyAdjustPanel">
+           <summary><span class="btnIconLabel"><svg class="navIcon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.05.05a2 2 0 1 1-2.83 2.83l-.05-.05a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.08a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.05.05a2 2 0 1 1-2.83-2.83l.05-.05A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.08a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.05-.05a2 2 0 0 1 2.83-2.83l.05.05A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.08a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.05-.05a2 2 0 1 1 2.83 2.83l-.05.05A1.7 1.7 0 0 0 19.4 9c.24.64.86 1.05 1.55 1.05H21a2 2 0 1 1 0 4h-.08c-.69 0-1.31.41-1.55 1.05z"></path></svg><span>Adjust filters</span></span></summary>
+           <div class="studyAdjustBody">
+             <div class="row">
+               <div class="grow">
+                 <label>Topic</label>
+                 <select id="topicSelect"></select>
+               </div>
+               <div class="grow" style="min-width:170px">
+                 <label>Mode</label>
+                 <select id="modeSelect">
+                   <option value="all" selected>All</option>
+                   <option value="focus">Focus</option>
+                   <option value="journey">Journey</option>
+                 </select>
+               </div>
+               <div class="grow" style="min-width:160px">
+                 <label>Order</label>
+                 <select id="orderSelect">
+                   <option value="ordered" selected>In order</option>
+                   <option value="random">Random</option>
+                 </select>
+               </div>
+               <div class="grow">
+               <label>Search</label>
+                <input id="searchInput" placeholder="e.g. Key term / core idea / case study" />
+               </div>
+             </div>
+           </div>
+         </details>
+       </div>
+     </div>
+   </section>
+ 
+ 
+   <!-- QUIZ -->
+   <section id="quiz" class="tabpane hidden">
+     <div class="quizBackgroundTitle" aria-hidden="true">
+       <svg class="quizPanelTitleIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m13 2-8 12h6l-1 8 8-12h-6z"></path></svg>
+       <span class="quizPanelTitleText">Quiz</span>
+     </div>
+     <div class="card">
+       <div id="quizEmpty" class="note">
+         Quiz points boost your Home progress score.
+       </div>
+ 
+       <div class="quizLaunch">
+         <button class="btn primary quizLaunchBtn" id="btnStartRandomQuiz" type="button"><span class="btnIconLabel"><svg class="navIcon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"></rect><circle cx="9" cy="9" r="1"></circle><circle cx="15" cy="9" r="1"></circle><circle cx="9" cy="15" r="1"></circle><circle cx="15" cy="15" r="1"></circle></svg><span>Start random quiz</span></span></button>
+       </div>
+ 
+       <div id="quizBox" class="hidden">
+   <div class="nextUpActions">
+     <button class="btn primary" id="nextUpPrimaryBtn" type="button">Let's go</button>
+     <button class="btn" id="nextUpDismissBtn" type="button">Later</button>
+   </div>
+ </div>
+ 
+ <div id="magicMomentSheet" class="nextUpSheet hidden" role="dialog" aria-live="polite" aria-label="Progress moment">
+   <div style="font-weight:900">Nice — that counted.</div>
+   <div class="note" style="margin-top:4px">You're building momentum for exam day.</div>
+   <div id="magicMomentMetric" class="magicMetric">Tasks today: 1</div>
+   <div class="nextUpActions">
+     <button class="btn primary" id="magicMomentNextBtn" type="button">Next task</button>
+     <button class="btn" id="magicMomentDismissBtn" type="button">Not now</button>
+   </div>
+ </div>
+ 
+ <div id="debugPanel" class="debugPanel hidden" role="region" aria-label="Recommendation debug panel">
+   <h4>Recommendation debug</h4>
+   <div id="debugReco"></div>
+   <pre id="debugCandidates"></pre>
+   <div id="debugMetrics" style="margin-top:8px"></div>
+ </div>
+ 
+ <script>
+ /* ==========================================================
+   REUSABLE SUBJECT TEMPLATE DATA
+    ========================================================== */
+(function(){
+  const SUBJECT_META = {
+    title: "SUBJECT TITLE",
+    subtitle: "Course subtitle goes here",
+    shortName: "Subject App",
+    description: "Reusable study app template with placeholder content ready for a new subject.",
+    storageKey: "subject_template_revision_v1"
+   };
+ 
+  const TOPICS = [1,2,3,4].map(i => ({
+    id:`t${i}`,
+    title:`Topic ${i} (Date range placeholder)`
+  }));
+ 
+  const JOURNEY_TOPIC_STOPS = Object.freeze([
+    { id:"t1", title:"Topic 1", years:"Range A", x:81.5, y:78.4, labelClass:"right" },
+    { id:"t2", title:"Topic 2", years:"Range B", x:57.4, y:60.9, labelClass:"left" },
+    { id:"t3", title:"Topic 3", years:"Range C", x:69.5, y:43.4, labelClass:"right" },
+    { id:"t4", title:"Topic 4", years:"Range D", x:73.6, y:25.6, labelClass:"left" }
+  ]);
+
+  const placeholderImage = "./assets/placeholder-topic.svg";
+  const timelineImage = "./assets/placeholder-timeline.svg";
+  const infographicImage = "./assets/placeholder-lesson.svg";
+
+  function makeTerms(topicNum){
+    return Array.from({length:8}, (_,i)=>({
+      term:`Topic ${topicNum} Term ${i+1}`,
+      date:`Year ${topicNum}.${i+1}`,
+      meaning:`Placeholder definition for Topic ${topicNum} Term ${i+1}. Replace this with subject-specific core knowledge.`,
+      significance:`Placeholder significance for Topic ${topicNum} Term ${i+1}. Explain why this detail matters in the future subject.`
+    }));
+  }
+
+  function makePeople(topicNum){
+    return Array.from({length:6}, (_,i)=>({
+      name:`Topic ${topicNum} Figure ${i+1}`,
+      role:`Placeholder role for Topic ${topicNum} Figure ${i+1}.`,
+      significance:`Placeholder significance for Topic ${topicNum} Figure ${i+1}.`
+    }));
+  }
+
+  function makeEvents(topicNum){
+    return Array.from({length:6}, (_,i)=>({
+      name:`Topic ${topicNum} Event ${i+1}`,
+      date:`Year ${topicNum}${i+1}`,
+      what:`Placeholder summary for Topic ${topicNum} Event ${i+1}.`,
+      whyMatters:`Placeholder explanation for why Topic ${topicNum} Event ${i+1} matters.`
+    }));
+  }
+
+  const FACT_BANK = Object.fromEntries(TOPICS.map((topic, index)=>{
+    const topicNum = index + 1;
+    return [topic.id, {
+      title:`${topicNum}. Topic ${topicNum}`,
+      core:[
+        { q:`What is the main focus of Topic ${topicNum}?`, a:`This is placeholder overview text for Topic ${topicNum}. Replace it with the real subject overview.`, tags:[`topic-${topicNum}`,"overview"] },
+        { q:`Which debate should learners explore in Topic ${topicNum}?`, a:`Use this placeholder answer to describe a key debate, process, theme, or concept for Topic ${topicNum}.`, tags:[`topic-${topicNum}`,"debate"] }
+      ],
+      terms:makeTerms(topicNum),
+      people:makePeople(topicNum),
+      events:makeEvents(topicNum)
+    }];
+  }));
+ 
+  const MCQ_BANK_MANUAL = TOPICS.flatMap((topic, index)=>{
+    const topicNum = index + 1;
+    return Array.from({length:12}, (_,i)=>({
+      topicId:topic.id,
+      q:`Topic ${topicNum} quiz question ${i+1}: which placeholder option is correct?`,
+      choices:[`Topic ${topicNum} option A`,`Topic ${topicNum} option B`,`Topic ${topicNum} option C`,`Topic ${topicNum} option D`],
+      answer:`Topic ${topicNum} option B`,
+      explain:`Placeholder explanation for Topic ${topicNum} quiz question ${i+1}. Replace with the real explanation later.`
+    }));
+   });
+ 
+  const TIMELINE_BANK = Object.fromEntries(TOPICS.map((topic, index)=>{
+    const topicNum = index + 1;
+    return [topic.id, Array.from({length:10}, (_,i)=>({
+      label:`Topic ${topicNum} timeline milestone ${i+1}`,
+      year: Number(`${topicNum}${String(i+1).padStart(2,'0')}`)
+    }))];
+  }));
+ 
+  const CONNECTIONS_BANK = Object.fromEntries(TOPICS.map((topic, index)=>{
+    const topicNum = index + 1;
+    return [topic.id, {
+      title:`${topicNum}. Topic ${topicNum}`,
+      groups:Array.from({length:6}, (_,groupIndex)=>({
+        label:`Topic ${topicNum} connection set ${groupIndex+1}`,
+        terms:Array.from({length:4}, (_,termIndex)=>`Topic ${topicNum} link ${groupIndex+1}.${termIndex+1}`)
+      }))
+    }];
+  }));
+ 
+  const EMOJI_BANK = Object.fromEntries(TOPICS.map((topic, index)=>{
+    const topicNum = index + 1;
+    return [topic.id, {
+      title:`Topic ${topicNum}`,
+      sets:[
+        { answer:`Topic ${topicNum} Concept 1`, emojis:["🧩","📝","📘"], clue:`Placeholder clue for Topic ${topicNum} Concept 1.` },
+        { answer:`Topic ${topicNum} Concept 2`, emojis:["📅","🔍","💡"], clue:`Placeholder clue for Topic ${topicNum} Concept 2.` },
+        { answer:`Topic ${topicNum} Concept 3`, emojis:["🏛️","⚙️","📈"], clue:`Placeholder clue for Topic ${topicNum} Concept 3.` }
+      ]
+    }];
+  }));
+ 
+  const MATCH_PEOPLE_DEFAULTS = Object.fromEntries(TOPICS.map((topic, index)=>{
+    const topicNum = index + 1;
+    return [topic.id, Array.from({length:4}, (_,i)=>({
+      name:`Topic ${topicNum} Figure ${i+1}`,
+      role:`Placeholder role ${i+1} for Topic ${topicNum}.`
+    }))];
+  }));
+ 
+  const EXAM_BANK = TOPICS.flatMap((topic, index)=>{
+    const topicNum = index + 1;
+    return Array.from({length:3}, (_,i)=>({
+      id:`e${topicNum}${i+1}`,
+      topicId:topic.id,
+      question:`Topic ${topicNum} exam question ${i+1}: assess the placeholder claim for this future subject.`,
+      factors:[
+        `Topic ${topicNum} factor A`,
+        `Topic ${topicNum} factor B`,
+        `Topic ${topicNum} factor C`,
+        `Overall judgement`
+      ],
+      plan:[
+        { title:"Intro", body:`Placeholder introduction guidance for Topic ${topicNum} exam question ${i+1}.` },
+        { title:"Factor 1", body:`Placeholder paragraph guidance covering the first argument for Topic ${topicNum}.` },
+        { title:"Factor 2", body:`Placeholder paragraph guidance covering the second argument for Topic ${topicNum}.` },
+        { title:"Conclusion", body:`Placeholder conclusion guidance for Topic ${topicNum} exam question ${i+1}.` }
+      ],
+      help:[
+        `Placeholder evidence point 1 for Topic ${topicNum}.`,
+        `Placeholder evidence point 2 for Topic ${topicNum}.`,
+        `Placeholder evidence point 3 for Topic ${topicNum}.`
+      ]
+    }));
+  });
+ 
+  const lessonThemesMaster = [
+    { id:"political-authority", title:"Political Authority" },
+    { id:"economic-development", title:"Economic Development" },
+    { id:"opposition-control", title:"Opposition & Control" },
+    { id:"social-cultural", title:"Social & Cultural Change" }
+  ];
+
+  function makeLesson(topicNum, topicId, theme, lessonNum){
+    const lessonId = `${topicId}-${theme.id}-l${lessonNum}`;
+    const lessonTitle = `Lesson ${lessonNum}`;
+    const enquiry = `How does ${lessonTitle.toLowerCase()} develop Topic ${topicNum}'s placeholder enquiry?`;
+    return {
+      id:lessonId,
+      keyQuestionId:lessonNum,
+      keyQuestionTitle:`Key Question ${lessonNum}`,
+      keyQuestionOverview:`Placeholder overview for ${lessonTitle} in Topic ${topicNum}. Replace this with the real enquiry framing and context.`,
+      title:enquiry,
+      topicId,
+      themeId:theme.id,
+      yearLabel:`Range ${topicNum}.${lessonNum}`,
+      theme:theme.title,
+      heroImage:placeholderImage,
+      contentPack:{
+        hero:{
+          titleLine:`Placeholder introduction for ${lessonTitle} in Topic ${topicNum}.`,
+          subtitleLine:enquiry
+        },
+        bigPicture:`Placeholder big-picture summary for ${lessonTitle}. Use this to explain the main concept, process, or debate in the future subject.`,
+        sf:{
+          briefings:[1,2,3,4].map(i=>({
+            heading:`Micro-briefing ${i}: ${lessonTitle} focus ${i}`,
+            text:`Placeholder briefing ${i} for ${lessonTitle} in Topic ${topicNum}. Replace with subject-specific teaching content while keeping this structure.`
+          })),
+          checks:[1,2,3,4].map(i=>({
+            heading:`Context check ${i}`,
+            prompt:`Which placeholder judgement best fits ${lessonTitle} focus ${i}?`,
+            options:[
+              `Incorrect placeholder option A for ${lessonTitle}`,
+              `Correct placeholder option for ${lessonTitle} focus ${i}`,
+              `Incorrect placeholder option C for ${lessonTitle}`,
+              `Incorrect placeholder option D for ${lessonTitle}`
+            ],
+            correctIndex:1,
+            feedbackCorrect:`Correct: this is the placeholder answer for ${lessonTitle} focus ${i}.`,
+            feedbackWrong:`Not quite: replace this placeholder explanation with real feedback later.`
+          }))
+        },
+        ambition:{
+          briefings:[{
+            heading:`Exam link: ${lessonTitle}`,
+            text:`Placeholder exam-application note for ${lessonTitle}. Explain how this lesson's knowledge feeds into longer responses.`
+          }]
+        },
+        quickCheck:{
+          heading:`Quick Check`,
+          prompt:`Which placeholder conclusion is strongest for ${lessonTitle}?`,
+          options:[
+            `Overstated placeholder conclusion`,
+            `Balanced placeholder conclusion for ${lessonTitle}`,
+            `Unsupported placeholder conclusion`,
+            `Irrelevant placeholder conclusion`
+          ],
+          correctIndex:1,
+          feedbackCorrect:`Good choice: this placeholder answer balances change and continuity.`,
+          feedbackWrong:`Choose the option that is balanced and directly answers the enquiry.`
+        },
+        interpretations:{
+          A:{
+            text:`Extract A placeholder for ${lessonTitle}. Add a historian interpretation, source interpretation, or viewpoint here later.`,
+            argIdentify:{
+              prompt:`What is the main argument in Extract A for ${lessonTitle}?`,
+              options:[`Option A`,`Option B`,`Option C`,`Option D`],
+              correctIndex:1,
+              feedbackCorrect:`Correct: this identifies the main argument.`,
+              feedbackWrong:`Look for the option that captures the overall claim most directly.`
+            },
+            evidenceSupport:{
+              selectionLimit:3,
+              statements:[1,2,3,4].map(i=>({ id:`${lessonId}-as${i}`, text:`Support statement ${i} for ${lessonTitle}.`, score:i<3?2:1, feedback:`Placeholder feedback for support statement ${i}.` }))
+            },
+            evidenceChallenge:{
+              selectionLimit:2,
+              statements:[1,2,3,4].map(i=>({ id:`${lessonId}-ac${i}`, text:`Challenge statement ${i} for ${lessonTitle}.`, score:i<3?2:1, feedback:`Placeholder feedback for challenge statement ${i}.` }))
+            }
+          },
+          B:{
+            text:`Extract B placeholder for ${lessonTitle}. Replace with a contrasting interpretation or source judgement.`,
+            argIdentify:{
+              prompt:`What is the main argument in Extract B for ${lessonTitle}?`,
+              options:[`Option A`,`Option B`,`Option C`,`Option D`],
+              correctIndex:2,
+              feedbackCorrect:`Correct: this identifies the contrast in Extract B.`,
+              feedbackWrong:`Pick the option that contrasts with Extract A most clearly.`
+            },
+            evidenceSupport:{
+              selectionLimit:3,
+              statements:[1,2,3,4].map(i=>({ id:`${lessonId}-bs${i}`, text:`Alternative support statement ${i} for ${lessonTitle}.`, score:i<3?2:1, feedback:`Placeholder feedback for support statement ${i}.` }))
+            },
+            evidenceChallenge:{
+              selectionLimit:2,
+              statements:[1,2,3,4].map(i=>({ id:`${lessonId}-bc${i}`, text:`Alternative challenge statement ${i} for ${lessonTitle}.`, score:i<3?2:1, feedback:`Placeholder feedback for challenge statement ${i}.` }))
+            }
+          }
+        },
+        judgement:{
+          options:[
+            `Overstated placeholder judgement for ${lessonTitle}.`,
+            `Balanced placeholder judgement for ${lessonTitle}.`,
+            `Weak placeholder judgement for ${lessonTitle}.`,
+            `Irrelevant placeholder judgement for ${lessonTitle}.`
+          ],
+          bestIndex:1,
+          feedbackCorrect:`Strong judgement: this placeholder answer is balanced and defensible.`,
+          feedbackWrong:`Choose the option that weighs more than one side of the argument.`,
+          evidencePick:{
+            selectionLimit:2,
+            statements:[1,2,3,4,5].map(i=>({ id:`${lessonId}-j${i}`, text:`Judgement evidence ${i} for ${lessonTitle}.`, score:i<4?2:(i===4?1:-1), feedback:`Placeholder feedback for judgement evidence ${i}.` }))
+          }
+         }
+       }
+    };
+  }
+ 
+  const lessonsData = TOPICS.map((topic, index)=>{
+    const topicNum = index + 1;
+    return {
+      id:topic.id,
+      title:topic.title,
+      topicOverview:{
+        tension:`Placeholder tension for Topic ${topicNum}. Explain the central issue or debate here later.`,
+        examWants:[
+          `Placeholder exam skill 1 for Topic ${topicNum}.`,
+          `Placeholder exam skill 2 for Topic ${topicNum}.`,
+          `Placeholder exam skill 3 for Topic ${topicNum}.`
+        ],
+        pathway:lessonThemesMaster.map(theme=>theme.title)
+      },
+      themes:lessonThemesMaster.map(theme=>({
+        id:theme.id,
+        title:theme.title,
+        lessons:[1,2].map(lessonNum=>makeLesson(topicNum, topic.id, theme, lessonNum))
+      }))
+    };
+   });
+ 
+  const LESSON_INFOGRAPHICS = Object.fromEntries(
+    lessonsData.flatMap(topic => topic.themes.flatMap(theme => theme.lessons.map(lesson => [lesson.id, infographicImage])))
+  );
+
+  const TOPIC_TIMELINE_IMAGES = Object.fromEntries(TOPICS.map(topic => [topic.id, timelineImage]));
+
+  window.SUBJECT_TEMPLATE_DATA = {
+    SUBJECT_META,
+    TOPICS,
+    JOURNEY_TOPIC_STOPS,
+    FACT_BANK,
+    MCQ_BANK_MANUAL,
+    TIMELINE_BANK,
+    CONNECTIONS_BANK,
+    EMOJI_BANK,
+    MATCH_PEOPLE_DEFAULTS,
+    EXAM_BANK,
+    lessonsData,
+    LESSON_INFOGRAPHICS,
+    TOPIC_TIMELINE_IMAGES,
+    lessonThemesMaster
+  };
+})();
+
+const { SUBJECT_META, TOPICS, JOURNEY_TOPIC_STOPS, FACT_BANK, MCQ_BANK_MANUAL, TIMELINE_BANK, CONNECTIONS_BANK, EMOJI_BANK, MATCH_PEOPLE_DEFAULTS, EXAM_BANK, lessonsData, LESSON_INFOGRAPHICS, TOPIC_TIMELINE_IMAGES, lessonThemesMaster } = window.SUBJECT_TEMPLATE_DATA;
+
+const TL_STATE = {
+  topicId: null,
+  size: 8,
+  events: [],
+  pool: [],
+  placed: [],
+  selectedPoolIdx: null,
+  showDates: false,
+  completed: false
+};
+
+function tlEnabledTopicsForSelect(){
+  const ids = enabledTopicIds();
+  return TOPICS.filter(t=>ids.includes(t.id));
+ }
+ 
+function tlPopulateSelect(){
+  const sel = $("timelineTopicSelect");
+  if(!sel) return;
+  sel.innerHTML = "";
+  tlEnabledTopicsForSelect().forEach(t=>{
+    const opt = document.createElement("option");
+    opt.value = t.id;
+    opt.textContent = t.title;
+    sel.appendChild(opt);
+  });
+ }
+ 
+function tlPickEvents(topicId, size){
+  const bank = (TIMELINE_BANK[topicId] || []).slice();
+  // Fallback: if missing, use a simple cross-topic set
+  const fallback = [
+    {label:"Milestone 1", year:101},
+    {label:"Milestone 2", year:102},
+    {label:"Milestone 3", year:103},
+    {label:"Milestone 4", year:104},
+    {label:"Milestone 5", year:105},
+    {label:"Milestone 6", year:106},
+    {label:"Milestone 7", year:107},
+    {label:"Milestone 8", year:108},
+    {label:"Milestone 9", year:109},
+    {label:"Milestone 10", year:110},
+  ];
+  const src = bank.length ? bank : fallback;
+ 
+  // If asking for more than available, just cap.
+  const n = Math.min(size, src.length);
+ 
+  // Shuffle and take n
+  const shuffled = src
+    .map(x=>({x, r:Math.random()}))
+    .sort((a,b)=>a.r-b.r)
+    .map(o=>o.x)
+    .slice(0,n);
+ 
+  return shuffled;
+ }
+ 
+function tlFormatYear(y){
+  // y can include .MM or .MMDD-ish; keep human readable
+  const year = Math.floor(y);
+  const frac = y - year;
+  if(frac <= 0) return String(year);
+  // 2-digit month
+  const mm = Math.round(frac * 100);
+  if(mm >= 1 && mm <= 12) return `${year} (month ${String(mm).padStart(2,"0")})`;
+  return String(year);
+}
+ 
+function tlRender(){
+  const poolEl = $("timelinePool");
+  const slotsEl = $("timelineSlots");
+  const msgEl = $("timelineMsg");
+  const checkBtn = $("btnCheckTimeline");
+ 
+  if(!poolEl || !slotsEl || !msgEl || !checkBtn) return;
+ 
+  // message
+  msgEl.textContent = TL_STATE.completed
+    ? "Perfect timeline. Dates unlocked."
+    : (TL_STATE.placed.every(x=>x) ? "Ready to check." : "Select an event, then tap a slot to place it.");
+ 
+  // pool chips
+  poolEl.innerHTML = "";
+  TL_STATE.pool.forEach((ev, i)=>{
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "tlChip" + (TL_STATE.selectedPoolIdx===i ? " isSelected" : "");
+    chip.textContent = ev.label;
+    chip.addEventListener("click", ()=>{
+      if(TL_STATE.completed) return;
+      TL_STATE.selectedPoolIdx = (TL_STATE.selectedPoolIdx===i) ? null : i;
+      tlRender();
+    });
+    poolEl.appendChild(chip);
+  });
+ 
+  // slots
+  slotsEl.innerHTML = "";
+  TL_STATE.placed.forEach((ev, idx)=>{
+    const li = document.createElement("li");
+    const slot = document.createElement("div");
+    slot.className = "tlSlot" + (!ev ? " empty" : "");
+    if(ev && ev._wrong) slot.classList.add("isWrong");
+ 
+    const btn = document.createElement("button");
+    btn.type = "button";
+
+    if(!ev){
+      btn.innerHTML = `<span>Tap to place…</span><span class="tlDate"></span>`;
+    }else{
+      const dateHtml = (TL_STATE.showDates ? `<span class="tlDate">${tlFormatYear(ev.year)}</span>` : `<span class="tlDate"></span>`);
+      btn.innerHTML = `<strong>${escapeHtml(ev.label)}</strong>${dateHtml}`;
+    }
+
+    btn.addEventListener("click", ()=>{
+      if(TL_STATE.completed) return;
+ 
+      // If slot occupied and no selection: remove to pool
+      if(ev && TL_STATE.selectedPoolIdx===null){
+        // remove
+        const removed = TL_STATE.placed[idx];
+        TL_STATE.placed[idx] = null;
+        delete removed._wrong;
+        TL_STATE.pool.push(removed);
+        tlClearWrongMarks();
+        tlRender();
+        return;
+      }
+ 
+      // Place selected pool item into this slot
+      const selIdx = TL_STATE.selectedPoolIdx;
+      if(selIdx===null) return;
+ 
+      const picked = TL_STATE.pool.splice(selIdx,1)[0];
+ 
+      // If slot had an event, send it back to pool
+      if(TL_STATE.placed[idx]){
+        const old = TL_STATE.placed[idx];
+        delete old._wrong;
+        TL_STATE.pool.push(old);
+      }
+ 
+      TL_STATE.placed[idx] = picked;
+      TL_STATE.selectedPoolIdx = null;
+      tlClearWrongMarks();
+      tlRender();
+    });
+ 
+    slot.appendChild(btn);
+    li.appendChild(slot);
+    slotsEl.appendChild(li);
+  });
+ 
+  // enable check only when all slots filled and not completed
+  const filled = TL_STATE.placed.every(x=>!!x);
+  checkBtn.disabled = !(filled && !TL_STATE.completed);
+ }
+ 
+function tlClearWrongMarks(){
+  TL_STATE.placed.forEach(ev=>{ if(ev) delete ev._wrong; });
+  const msgEl = $("timelineMsg");
+  if(msgEl && !TL_STATE.completed) msgEl.textContent = "";
+ }
+ 
+function tlStart(){
+  const sel = $("timelineTopicSelect");
+  const sizeSel = $("timelineSize");
+  const checkBtn = $("btnCheckTimeline");
+  const win = $("tlWinOverlay");
+  if(win) win.classList.add("hidden");
+  if(checkBtn) checkBtn.disabled = true;
+
+  TL_STATE.topicId = sel ? sel.value : (enabledTopicIds()[0] || null);
+  TL_STATE.size = sizeSel ? Number(sizeSel.value || 8) : 8;
+
+  if(!TL_STATE.topicId){
+    TL_STATE.events = [];
+    TL_STATE.pool = [];
+    TL_STATE.placed = [];
+    TL_STATE.selectedPoolIdx = null;
+    TL_STATE.completed = false;
+    const msgEl = $("timelineMsg");
+    if(msgEl) msgEl.textContent = "Enable at least one topic to play Timeline Builder.";
+    tlRender();
+     return;
+   }
+ 
+  TL_STATE.events = tlPickEvents(TL_STATE.topicId, TL_STATE.size);
+  TL_STATE.pool = TL_STATE.events
+    .map(e=>({label:e.label, year:e.year}))
+    .map(x=>({x, r:Math.random()}))
+    .sort((a,b)=>a.r-b.r)
+    .map(o=>o.x);
+ 
+  TL_STATE.placed = Array.from({length: TL_STATE.pool.length}).map(()=>null);
+  TL_STATE.selectedPoolIdx = null;
+  TL_STATE.showDates = false;
+  TL_STATE.completed = false;
+
+  tlRender();
+ }
+ 
+function tlReset(){
+  // keep same topic/size but reshuffle
+  tlStart();
+ }
+ 
+function tlCheck(){
+  const msgEl = $("timelineMsg");
+  const win = $("tlWinOverlay");
+ 
+  if(!TL_STATE.placed.every(x=>x)) return;
+
+  // compute correct order by year asc
+  const correct = TL_STATE.placed
+    .slice()
+    .map((ev, i)=>({ev, i}))
+    .map(o=>o.ev)
+    .slice()
+    .sort((a,b)=>a.year-b.year)
+    .map(ev=>ev.label);
+
+  const current = TL_STATE.placed.map(ev=>ev.label);
+  const isPerfect = current.every((lbl, i)=>lbl === correct[i]);
+
+  if(isPerfect){
+    TL_STATE.showDates = true;
+    TL_STATE.completed = true;
+    if(msgEl) msgEl.textContent = "Perfect timeline — dates unlocked.";
+    if(win){
+      win.classList.remove("hidden");
+      setTimeout(()=>win.classList.add("hidden"), 1600);
+     }
+    confetti.burst(160);
+    markGameSessionCompleted("timeline", TL_STATE.topicId);
+  }else{
+    // mark wrong slots
+    TL_STATE.placed.forEach((ev, i)=>{
+      ev._wrong = (ev.label !== correct[i]);
+    });
+    if(msgEl) msgEl.textContent = "Not quite — red slots are out of place. Adjust and try again.";
+   }
+ 
+  tlRender();
+ }
+ 
+function initTimelineGame(){
+  const openBtn = $("openTimelineBtn");
+  const backBtn = $("backFromTimeline");
+  const startBtn = $("btnStartTimeline");
+  const resetBtn = $("btnResetTimeline");
+  const checkBtn = $("btnCheckTimeline");
+  const topicSel = $("timelineTopicSelect");
+ 
+  // populate topic select whenever entering games tab
+  tlPopulateSelect();
+
+  // listeners
+  if(startBtn) startBtn.addEventListener("click", tlStart);
+  if(resetBtn) resetBtn.addEventListener("click", tlReset);
+  if(checkBtn) checkBtn.addEventListener("click", tlCheck);
+ 
+  // changing topic should start a fresh timeline (but not forced immediately)
+  if(topicSel) topicSel.addEventListener("change", ()=>{ /* user can hit New timeline */ });
+ 
+  // close overlay on tap
+  const win = $("tlWinOverlay");
+  if(win) win.addEventListener("click", ()=>win.classList.add("hidden"));
+ }
+ 
+/* =========================
+   Connections game logic
+   ========================= */
+ 
+
+(function initConnectionsGame(){
+  const topicSel = document.getElementById("connTopicSelect");
+  const gridEl = document.getElementById("connGrid");
+  const solvedEl = document.getElementById("connSolved");
+  const msgEl = document.getElementById("connMsg");
+  const clearBtn = document.getElementById("connClearBtn");
+  const submitBtn = document.getElementById("connSubmitBtn");
+
+
+const winOverlay = document.getElementById("connWinOverlay");
+
+function safeBurst(n){
+  try{
+    if(!window.reduceMotion && typeof confetti !== "undefined" && confetti?.burst){
+      confetti.burst(n);
+    }
+  }catch(e){}
+ }
+ 
+function showConnWinOverlay(){
+  if(!winOverlay) return;
+  const titleEl = winOverlay.querySelector(".connWinTitle");
+  const subEl = winOverlay.querySelector(".connWinSub");
+  const topicTitle = (CONNECTIONS_BANK[state?.topicKey]?.title) || "Connections";
+  if(titleEl) titleEl.textContent = "🏆 Connections complete!";
+  if(subEl) subEl.textContent = topicTitle;
+
+  winOverlay.classList.remove("hidden");
+  winOverlay.classList.add("show");
+  clearTimeout(showConnWinOverlay._t);
+  showConnWinOverlay._t = setTimeout(() => {
+    winOverlay.classList.remove("show");
+    winOverlay.classList.add("hidden");
+  }, 2200);
+ }
+ 
+  if(!topicSel || !gridEl || !solvedEl || !msgEl || !clearBtn || !submitBtn) return;
+ 
+  const mistakeDots = ["m1","m2","m3","m4"].map(id => document.getElementById(id));
+
+  function getEnabledConnectionTopics(){
+    return TOPICS.map(t=>t.id).filter(id=>isTopicEnabled(id) && CONNECTIONS_BANK[id]);
+   }
+ 
+  function populateConnTopicSelect(){
+    const prev = topicSel.value;
+    topicSel.innerHTML = "";
+    getEnabledConnectionTopics().forEach((key) => {
+      const t = CONNECTIONS_BANK[key];
+      const opt = document.createElement("option");
+      opt.value = key;
+      opt.textContent = t.title;
+      topicSel.appendChild(opt);
+    });
+    if(topicSel.options.length){
+      const values = new Set(Array.from(topicSel.options).map(o=>o.value));
+      topicSel.value = values.has(prev) ? prev : topicSel.options[0].value;
+    }
+  }
+ 
+  window.refreshConnectionsTopicSelect = function(){
+    populateConnTopicSelect();
+    if(!topicSel.options.length){
+      gridEl.innerHTML = "";
+      solvedEl.innerHTML = "";
+      setMsg("No enabled topics available.");
+       return;
+     }
+    buildBoard(topicSel.value);
+  };
+
+  // Populate topics
+  populateConnTopicSelect();
+
+  // Deterministic daily seed (same per day per topic per device)
+  function dayKey(){
+    const d = new Date();
+    const y = d.getFullYear();
+    const m = String(d.getMonth()+1).padStart(2,"0");
+    const da = String(d.getDate()).padStart(2,"0");
+    return `${y}-${m}-${da}`;
+  }
+  function mulberry32(a){
+    return function(){
+      let t = a += 0x6D2B79F5;
+      t = Math.imul(t ^ (t >>> 15), t | 1);
+      t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    }
+  }
+  function hashStr(s){
+    let h = 2166136261;
+    for(let i=0;i<s.length;i++){
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return h >>> 0;
+  }
+  function shuffle(arr, rand){
+    const a = arr.slice();
+    for(let i=a.length-1;i>0;i--){
+      const j = Math.floor(rand()* (i+1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+   }
+ 
+  // State
+  let state = null;
+ 
+  function resetMistakes(){
+    state.mistakes = 0;
+    mistakeDots.forEach(d => { if(d) d.classList.remove("used"); });
+  }
+ 
+  function setMsg(text){
+    msgEl.textContent = text || "";
+  }
+ 
+  function renderSolved(){
+    solvedEl.innerHTML = "";
+    state.solved.forEach(g => {
+      const box = document.createElement("div");
+      box.className = "solvedGroup";
+      box.innerHTML = `
+        <div class="solvedTitle">${g.label}</div>
+        <div class="solvedTerms">${g.terms.map(t=>`<span>${t}</span>`).join("")}</div>
+      `;
+      solvedEl.appendChild(box);
+    });
+  }
+
+  function renderGrid(){
+    gridEl.innerHTML = "";
+    state.tiles.forEach((t, idx) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "connTile";
+      btn.textContent = t.term;
+      if(t.locked) btn.classList.add("locked");
+      if(state.selected.has(idx)) btn.classList.add("selected");
+
+      btn.addEventListener("click", () => {
+        if(t.locked) return;
+        if(state.selected.has(idx)){
+          state.selected.delete(idx);
+        }else{
+          if(state.selected.size >= 4){
+            setMsg("Select up to 4 terms.");
+            return;
+          }
+          state.selected.add(idx);
+        }
+        setMsg("");
+        renderGrid();
+      });
+ 
+      gridEl.appendChild(btn);
+    });
+  }
+ 
+  function buildBoard(topicKey){
+    const topic = CONNECTIONS_BANK[topicKey];
+    const seed = hashStr(topicKey + "|" + dayKey());
+    const rand = mulberry32(seed);
+ 
+    // choose 4 groups from available (>=5)
+    const pickedGroups = shuffle(topic.groups, rand).slice(0, 4);
+ 
+    // flatten terms into tiles
+    const tiles = [];
+    pickedGroups.forEach((g, gi) => {
+      g.terms.forEach(term => tiles.push({ term, groupIndex: gi, locked:false }));
+     });
+ 
+    state = {
+      topicKey,
+      groups: pickedGroups,
+      tiles: shuffle(tiles, rand),
+      selected: new Set(),
+      solved: [],
+      mistakes: 0
+    };
+
+    resetMistakes();
+    setMsg("Find 4 groups of 4.");
+    renderSolved();
+    renderGrid();
+   }
+ 
+  function markMistake(){
+    state.mistakes++;
+    if(mistakeDots[state.mistakes-1]) mistakeDots[state.mistakes-1].classList.add("used");
+    if(state.mistakes >= 4){
+      setMsg("No mistakes remaining — board reset.");
+      buildBoard(state.topicKey);
+    }else{
+      setMsg(`Not a group. Mistakes remaining: ${4 - state.mistakes}`);
+     }
+  }
+ 
+  function submitSelection(){
+    if(state.selected.size !== 4){
+      setMsg("Select exactly 4 terms.");
+      return;
+    }
+ 
+    const idxs = [...state.selected];
+    const groups = idxs.map(i => state.tiles[i].groupIndex);
+    const allSame = groups.every(g => g === groups[0]);
+ 
+    if(!allSame){
+      state.selected.clear();
+      renderGrid();
+      markMistake();
+      return;
+    }
+ 
+    const gi = groups[0];
+    const group = state.groups[gi];
+ 
+    // lock those tiles
+    idxs.forEach(i => state.tiles[i].locked = true);
+    state.selected.clear();
+
+    // add solved group (unique)
+    if(!state.solved.some(s => s.label === group.label)){
+      state.solved.push(group);
+    }
+
+    renderSolved();
+    renderGrid();
+
+// Celebrate: confetti burst for a correct connection
+safeBurst(90);
+
+if(state.solved.length === 4){
+  setMsg("✅ Solved! New board tomorrow.");
+  markGameSessionCompleted("connections", state.topicKey);
+  // Big win celebration: trophy + more confetti
+  safeBurst(220);
+  showConnWinOverlay();
+  try{
+    const tTitle = (CONNECTIONS_BANK[state.topicKey]?.title) || "Connections";
+    if(typeof showLevelUpBanner === "function"){
+      showLevelUpBanner(`🏆 Connections Complete • ${escapeHtml ? escapeHtml(tTitle) : tTitle}`);
+    }
+  }catch(e){}
+}else{
+  setMsg("✅ Correct group!");
+ }
+  }
+ 
+  // Wire controls
+  clearBtn.addEventListener("click", () => {
+    state.selected.clear();
+    setMsg("");
+    renderGrid();
+  });
+ 
+  submitBtn.addEventListener("click", submitSelection);
+ 
+  topicSel.addEventListener("change", () => {
+    buildBoard(topicSel.value);
+  });
+ 
+  // initial
+  if(topicSel.options.length){
+    buildBoard(topicSel.value || topicSel.options[0].value);
+  }else{
+    setMsg("No enabled topics available.");
+  }
+})();
+ 
+/* =========================
+   Beat the Clock game logic
+   ========================= */
+const BEAT_CLOCK = {
+  run: 0,
+  best: Number(localStorage.getItem("beat_clock_best_run") || 0),
+  timer: null,
+  timeLeft: 20,
+  active: false,
+  correctTerms: new Set(),
+  selected: new Set(),
+  roundTopicId: null,
+  terms: []
+};
+ 
+function bcAllTermsByTopic(){
+  const map = {};
+  Object.entries(FACT_BANK).forEach(([topicId, bank]) => {
+    if(!isTopicEnabled(topicId)) return;
+    const terms = (bank?.terms || []).map(t => String(t.term||"").trim()).filter(Boolean);
+    map[topicId] = Array.from(new Set(terms));
+  });
+  return map;
+ }
+
+function bcSetMsg(msg){
+  const el = document.getElementById("bcMsg");
+  if(el) el.textContent = msg;
+ }
+
+function bcUpdatePills(){
+  const timerPill = document.getElementById("bcTimerPill");
+  const runPill = document.getElementById("bcRoundPill");
+  const bestPill = document.getElementById("bcBestPill");
+  if(timerPill) timerPill.textContent = `⏳ ${BEAT_CLOCK.timeLeft}s`;
+  if(runPill) runPill.textContent = `Run: ${BEAT_CLOCK.run}`;
+  if(bestPill) bestPill.textContent = `🏆 Best run: ${BEAT_CLOCK.best}`;
+ }
+
+function bcStopTimer(){
+  if(BEAT_CLOCK.timer){
+    clearInterval(BEAT_CLOCK.timer);
+    BEAT_CLOCK.timer = null;
+   }
+ }
+
+function bcRenderGrid(){
+  const grid = document.getElementById("bcGrid");
+  if(!grid) return;
+  grid.innerHTML = "";
+
+  BEAT_CLOCK.terms.forEach(term => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "bcTile";
+    btn.textContent = term;
+    if(BEAT_CLOCK.selected.has(term)) btn.classList.add("selected");
+    if(!BEAT_CLOCK.active) btn.disabled = true;
+
+    btn.addEventListener("click", ()=>{
+      if(!BEAT_CLOCK.active) return;
+      if(BEAT_CLOCK.selected.has(term)){
+        BEAT_CLOCK.selected.delete(term);
+      }else{
+        if(BEAT_CLOCK.selected.size >= 4){
+          bcSetMsg("Select only 4 terms.");
+          return;
+        }
+        BEAT_CLOCK.selected.add(term);
+      }
+      bcRenderGrid();
+    });
+
+    grid.appendChild(btn);
+  });
+
+  const submit = document.getElementById("bcSubmitBtn");
+  const clear = document.getElementById("bcClearBtn");
+  if(submit) submit.disabled = !BEAT_CLOCK.active;
+  if(clear) clear.disabled = !BEAT_CLOCK.active;
+ }
+
+function bcFailRun(reason){
+  bcStopTimer();
+  BEAT_CLOCK.active = false;
+  BEAT_CLOCK.run = 0;
+  bcUpdatePills();
+  bcSetMsg(`${reason} Run reset — press Start run to try again.`);
+  bcRenderGrid();
+ }
+ 
+function bcPickRound(){
+  const byTopic = bcAllTermsByTopic();
+  const topicIds = Object.keys(byTopic).filter(id => byTopic[id].length >= 8);
+  if(!topicIds.length) return null;
+
+  const topicId = topicIds[Math.floor(Math.random()*topicIds.length)];
+  const topicTerms = shuffle(byTopic[topicId]).slice(0,4);
+  if(topicTerms.length < 4) return null;
+
+  const others = Object.entries(byTopic)
+    .filter(([id]) => id !== topicId)
+    .flatMap(([,terms]) => terms)
+    .filter(t => !topicTerms.includes(t));
+ 
+  if(others.length < 4) return null;
+  const distractors = shuffle(Array.from(new Set(others))).slice(0,4);
+  const mixed = shuffle([...topicTerms, ...distractors]);
+  return { topicId, topicTerms, mixed };
+}
+
+function bcStartRound(){
+  const round = bcPickRound();
+  if(!round){
+    bcSetMsg("Not enough terms to build Beat the Clock rounds.");
+    return;
+   }
+ 
+  BEAT_CLOCK.roundTopicId = round.topicId;
+  BEAT_CLOCK.correctTerms = new Set(round.topicTerms);
+  BEAT_CLOCK.terms = round.mixed;
+  BEAT_CLOCK.selected = new Set();
+  BEAT_CLOCK.timeLeft = 20;
+  BEAT_CLOCK.active = true;
+
+  const t = TOPICS.find(x=>x.id===round.topicId);
+  const topicPill = document.getElementById("bcTopicPill");
+  const prompt = document.getElementById("bcPrompt");
+  const title = t ? t.title : round.topicId;
+  if(topicPill) topicPill.textContent = `Topic: ${title}`;
+  if(prompt) prompt.textContent = `Find the 4 matching terms: ${title}`;
+
+  bcUpdatePills();
+  bcSetMsg("Go! Pick 4 and lock them in before the timer ends.");
+  bcRenderGrid();
+
+  bcStopTimer();
+  BEAT_CLOCK.timer = setInterval(()=>{
+    BEAT_CLOCK.timeLeft--;
+    bcUpdatePills();
+    if(BEAT_CLOCK.timeLeft <= 0){
+      bcFailRun("⏰ Time up!");
+     }
+  }, 1000);
+ }
+
+function bcSubmit(){
+  if(!BEAT_CLOCK.active) return;
+  if(BEAT_CLOCK.selected.size !== 4){
+    bcSetMsg("Select exactly 4 terms first.");
+    return;
+  }
+  const ok = [...BEAT_CLOCK.selected].every(t => BEAT_CLOCK.correctTerms.has(t));
+  if(!ok){
+    bcFailRun("❌ Wrong set.");
+    return;
+  }
+
+  bcStopTimer();
+  BEAT_CLOCK.run += 1;
+  if(BEAT_CLOCK.run > BEAT_CLOCK.best){
+    BEAT_CLOCK.best = BEAT_CLOCK.run;
+    localStorage.setItem("beat_clock_best_run", String(BEAT_CLOCK.best));
+  }
+  bcUpdatePills();
+  bcSetMsg(`✅ Nice! Round ${BEAT_CLOCK.run} cleared. Next round...`);
+  setTimeout(()=>{
+    if(BEAT_CLOCK.run > 0) bcStartRound();
+  }, 700);
+ }
+ 
+(function initBeatClockGame(){
+  const startBtn = document.getElementById("btnStartBeatClock");
+  const submitBtn = document.getElementById("bcSubmitBtn");
+  const clearBtn = document.getElementById("bcClearBtn");
+  if(!startBtn || !submitBtn || !clearBtn) return;
+ 
+  bcUpdatePills();
+  bcRenderGrid();
+ 
+  startBtn.addEventListener("click", ()=>{
+    BEAT_CLOCK.run = 0;
+    bcStartRound();
+    bcUpdatePills();
+  });
+ 
+  submitBtn.addEventListener("click", bcSubmit);
+  clearBtn.addEventListener("click", ()=>{
+    if(!BEAT_CLOCK.active) return;
+    BEAT_CLOCK.selected.clear();
+    bcRenderGrid();
+  });
+})();
+ 
+/* =========================
+   Snake Quiz game logic
+   ========================= */
+const SNAKE_QUIZ = {
+  board: 13,
+  snake: [],
+  dir: {x:1,y:0},
+  nextDir: {x:1,y:0},
+  tickMs: 170,
+  questionPreviewMs: 6000,
+  timer: null,
+  countdownTimer: null,
+  running: false,
+  score: 0,
+  best: Number(localStorage.getItem("snake_quiz_best_length") || 3),
+  q: null,
+  topicId: "MIXED"
+};
+ 
+function snakeEl(id){ return document.getElementById(id); }
+
+function snakeSetMsg(msg){
+  const el = snakeEl("snakeQuizMsg");
+  if(el) el.textContent = msg;
+ }
+ 
+function snakeCloseQuestionDialog(){
+  snakeEl("snakeQuestionOverlay")?.classList.add("hidden");
+  if(SNAKE_QUIZ.countdownTimer){
+    clearInterval(SNAKE_QUIZ.countdownTimer);
+    SNAKE_QUIZ.countdownTimer = null;
+  }
+}
+ 
+function snakeShowQuestionDialog(onDone, previewMs = SNAKE_QUIZ.questionPreviewMs){
+  const overlay = snakeEl("snakeQuestionOverlay");
+  const q = SNAKE_QUIZ.q;
+  if(!overlay || !q){
+    onDone?.();
+     return;
+   }
+  const countdownEl = snakeEl("snakeQuestionCountdown");
+  const bodyEl = snakeEl("snakeQuestionDialogBody");
+  const choicesEl = snakeEl("snakeQuestionDialogChoices");
+  if(bodyEl) bodyEl.textContent = q.prompt;
+  if(choicesEl){
+    choicesEl.innerHTML = "";
+    q.cells.forEach(c=>{
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${c.letter}.</strong> ${c.choice}`;
+      choicesEl.appendChild(li);
+    });
+  }
+  const seconds = Math.max(1, Math.ceil((Number(previewMs) || 0) / 1000));
+  let countdown = seconds;
+  if(countdownEl) countdownEl.textContent = String(countdown);
+  overlay.classList.remove("hidden");
+  if(SNAKE_QUIZ.countdownTimer) clearInterval(SNAKE_QUIZ.countdownTimer);
+  SNAKE_QUIZ.countdownTimer = setInterval(()=>{
+    countdown -= 1;
+    if(countdownEl) countdownEl.textContent = String(Math.max(0, countdown));
+    if(countdown <= 0){
+      snakeCloseQuestionDialog();
+      onDone?.();
+    }
+  }, 1000);
+ }
+ 
+function snakeStartTicker(){
+  if(SNAKE_QUIZ.timer) clearInterval(SNAKE_QUIZ.timer);
+  SNAKE_QUIZ.timer = setInterval(snakeTick, SNAKE_QUIZ.tickMs);
+ }
+ 
+function snakeStopTicker(){
+  if(!SNAKE_QUIZ.timer) return;
+  clearInterval(SNAKE_QUIZ.timer);
+  SNAKE_QUIZ.timer = null;
+}
+ 
+function snakePool(topicId){
+  return getQuizPool(topicId).filter(q=>Array.isArray(q.choices) && q.choices.length >= 3);
+}
+ 
+function snakeNewQuestion(){
+  const pool = snakePool(SNAKE_QUIZ.topicId);
+  if(!pool.length){
+    SNAKE_QUIZ.q = null;
+    snakeSetMsg("Pick another topic and start again.");
+    snakeStop();
+    return false;
+   }
+ 
+  const pick = pool[Math.floor(Math.random()*pool.length)];
+  const distractors = shuffle(pick.choices.filter(c=>c!==pick.answer)).slice(0,2);
+  const top3 = shuffle([pick.answer, ...distractors]);
+  const answerIdx = top3.findIndex(c=>c===pick.answer);
+  const letters = ["A","B","C"];
+  const occupied = new Set(SNAKE_QUIZ.snake.map(p=>`${p.x},${p.y}`));
+  const available = [];
+  for(let y=0;y<SNAKE_QUIZ.board;y++){
+    for(let x=0;x<SNAKE_QUIZ.board;x++){
+      const key = `${x},${y}`;
+      if(!occupied.has(key)) available.push({x,y});
+    }
+   }
+  if(available.length < 3){
+    snakeSetMsg("Board full — huge run. Starting fresh.");
+    snakeStart();
+    return false;
+  }
+
+  const spots = shuffle(available).slice(0,3);
+  SNAKE_QUIZ.q = {
+    prompt: pick.q,
+    answerIdx,
+    cells: spots.map((pos, idx)=>({ ...pos, letter:letters[idx], idx, choice:top3[idx] }))
+  };
+  return true;
+ }
+ 
+function snakeDraw(){
+  const canvas = snakeEl("snakeQuizCanvas");
+  if(!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if(!ctx) return;
+  const size = canvas.width;
+  const cell = size / SNAKE_QUIZ.board;
+ 
+  ctx.clearRect(0,0,size,size);
+  ctx.fillStyle = "#f4f9ff";
+  ctx.fillRect(0,0,size,size);
+  ctx.strokeStyle = "rgba(22,45,91,.08)";
+  ctx.lineWidth = 1;
+  for(let i=0;i<=SNAKE_QUIZ.board;i++){
+    const p = Math.round(i*cell)+0.5;
+    ctx.beginPath(); ctx.moveTo(p,0); ctx.lineTo(p,size); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,p); ctx.lineTo(size,p); ctx.stroke();
+  }
+ 
+  if(SNAKE_QUIZ.q){
+    SNAKE_QUIZ.q.cells.forEach(c=>{
+      const x = c.x*cell, y = c.y*cell;
+      const correct = c.idx === SNAKE_QUIZ.q.answerIdx;
+      ctx.fillStyle = correct ? "rgba(126,185,170,.32)" : "rgba(183,142,161,.22)";
+      ctx.fillRect(x+2,y+2,cell-4,cell-4);
+      ctx.strokeStyle = correct ? "rgba(126,185,170,.95)" : "rgba(183,142,161,.95)";
+      ctx.strokeRect(x+2,y+2,cell-4,cell-4);
+      ctx.fillStyle = "#11233a";
+      ctx.font = `${Math.floor(cell*0.46)}px Inter, sans-serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(c.letter, x + cell/2, y + cell/2);
+    });
+  }
+ 
+  SNAKE_QUIZ.snake.forEach((p, idx)=>{
+    const x = p.x*cell, y = p.y*cell;
+    ctx.fillStyle = idx===0 ? "#4f7fc2" : "#6e90ca";
+    ctx.fillRect(x+2,y+2,cell-4,cell-4);
+  });
+ }
+
+function snakeUpdateHud(){
+  snakeEl("snakeQuizLenPill").textContent = `Length: ${SNAKE_QUIZ.snake.length || 0}`;
+  snakeEl("snakeQuizScorePill").textContent = `Correct: ${SNAKE_QUIZ.score}`;
+  snakeEl("snakeQuizBestPill").textContent = `🏆 Best length: ${SNAKE_QUIZ.best}`;
+ }
+
+function snakeStop(){
+  snakeStopTicker();
+  snakeCloseQuestionDialog();
+  SNAKE_QUIZ.running = false;
+ }
+ 
+function snakeGameOver(reason){
+  snakeStop();
+  snakeSetMsg(`${reason} Final length ${SNAKE_QUIZ.snake.length}. Press Start run to play again.`);
+}
+ 
+function snakeTick(){
+  if(!SNAKE_QUIZ.running) return;
+  SNAKE_QUIZ.dir = { ...SNAKE_QUIZ.nextDir };
+  const head = SNAKE_QUIZ.snake[0];
+  const next = { x: head.x + SNAKE_QUIZ.dir.x, y: head.y + SNAKE_QUIZ.dir.y };
+ 
+  if(next.x < 0 || next.y < 0 || next.x >= SNAKE_QUIZ.board || next.y >= SNAKE_QUIZ.board){
+    snakeGameOver("🧱 You hit a wall.");
+    return;
+  }
+  if(SNAKE_QUIZ.snake.some(s=>s.x===next.x && s.y===next.y)){
+    snakeGameOver("🌀 You ran into your tail.");
+    return;
+  }
+ 
+  let ate = null;
+  if(SNAKE_QUIZ.q) ate = SNAKE_QUIZ.q.cells.find(c=>c.x===next.x && c.y===next.y) || null;
+  SNAKE_QUIZ.snake.unshift(next);
+ 
+  if(ate){
+    if(ate.idx === SNAKE_QUIZ.q.answerIdx){
+      SNAKE_QUIZ.score += 1;
+      if(SNAKE_QUIZ.snake.length > SNAKE_QUIZ.best){
+        SNAKE_QUIZ.best = SNAKE_QUIZ.snake.length;
+        localStorage.setItem("snake_quiz_best_length", String(SNAKE_QUIZ.best));
+      }
+      snakeSetMsg("✅ Correct! Review the next question in the pop-up.");
+      snakeUpdateHud();
+      if(!snakeNewQuestion()) return;
+      snakeDraw();
+      snakeStopTicker();
+      snakeShowQuestionDialog(()=>{
+        if(!SNAKE_QUIZ.running) return;
+        snakeSetMsg("Run resumed. Eat the correct A/B/C tile.");
+        snakeStartTicker();
+      });
+      return;
+    }else{
+      snakeGameOver(`❌ Wrong — ${ate.letter} was incorrect.`);
+      return;
+     }
+  }else{
+    SNAKE_QUIZ.snake.pop();
+  }
+
+  snakeUpdateHud();
+  snakeDraw();
+}
+
+function snakeSetDirection(dx,dy){
+  if(!SNAKE_QUIZ.running) return;
+  const cur = SNAKE_QUIZ.dir;
+  if(cur.x === -dx && cur.y === -dy) return;
+  SNAKE_QUIZ.nextDir = {x:dx,y:dy};
+}
+
+function snakeStart(){
+  snakeStop();
+  const sel = snakeEl("snakeTopicSelect");
+  SNAKE_QUIZ.topicId = sel?.value || "MIXED";
+  SNAKE_QUIZ.snake = [{x:2,y:6},{x:1,y:6},{x:0,y:6}];
+  SNAKE_QUIZ.dir = {x:1,y:0};
+  SNAKE_QUIZ.nextDir = {x:1,y:0};
+  SNAKE_QUIZ.score = 0;
+  SNAKE_QUIZ.running = true;
+  snakeUpdateHud();
+  if(!snakeNewQuestion()) return;
+  snakeDraw();
+  snakeSetMsg("Memorise the question in the pop-up. Snake starts in 4 seconds.");
+  snakeShowQuestionDialog(()=>{
+    if(!SNAKE_QUIZ.running) return;
+    snakeStartTicker();
+    snakeSetMsg("Run started. Eat the correct A/B/C tile.");
+   });
+}
+ 
+(()=>{
+  const startBtn = snakeEl("btnStartSnakeQuiz");
+  if(!startBtn) return;
+  startBtn.addEventListener("click", snakeStart);
+  snakeEl("snakeDirUp")?.addEventListener("click", ()=>snakeSetDirection(0,-1));
+  snakeEl("snakeDirDown")?.addEventListener("click", ()=>snakeSetDirection(0,1));
+  snakeEl("snakeDirLeft")?.addEventListener("click", ()=>snakeSetDirection(-1,0));
+  snakeEl("snakeDirRight")?.addEventListener("click", ()=>snakeSetDirection(1,0));
+  document.addEventListener("keydown", (ev)=>{
+    if(!SNAKE_QUIZ.running) return;
+    if(ev.key === "ArrowUp") snakeSetDirection(0,-1);
+    if(ev.key === "ArrowDown") snakeSetDirection(0,1);
+    if(ev.key === "ArrowLeft") snakeSetDirection(-1,0);
+    if(ev.key === "ArrowRight") snakeSetDirection(1,0);
+  });
+  snakeEl("snakeTopicSelect")?.addEventListener("change", ()=>{
+    if(SNAKE_QUIZ.running) snakeStart();
+  });
+  snakeUpdateHud();
+  snakeDraw();
+})();
+ 
+/* ==========================================================
+   EMOJI BANK (fully populated starter as provided)
+   ========================================================== */
+ 
+ 
+ 
+ 
+(function ensureMatchPeopleInFactBank(){
+  Object.entries(MATCH_PEOPLE_DEFAULTS).forEach(([topicId, list])=>{
+    if(!FACT_BANK[topicId]) return;
+    const existing = Array.isArray(FACT_BANK[topicId].people) ? FACT_BANK[topicId].people : [];
+    const seen = new Set(existing.map(p=>String(p.name||"").toLowerCase()));
+    const merged = existing.slice();
+    list.forEach((p)=>{
+      const k = String(p.name||"").toLowerCase();
+      if(!k || seen.has(k)) return;
+      seen.add(k);
+      merged.push(p);
+    });
+    FACT_BANK[topicId].people = merged;
+  });
+})();
+ 
+ 
+/* ==========================================================
+   EXAM BANK (3 questions per topic — already true here)
+   ========================================================== */
+ 
+ 
+ 
+/* ==========================================================
+   STORAGE + STATE
+   ========================================================== */
+const STORAGE_KEY = SUBJECT_META.storageKey;
+ 
+function baseState(){
+  return {
+    reviews:{},
+    // stats: studied counter (focus backlog is computed from reviews)
+    stats:{ studied:0 },
+    quiz:{ attempted:0, correct:0, bestStreakAllTime:0 },
+    weekly:{},
+    topicLevels:{},
+    daily:{},
+    // Duolingo-style: consecutive days completing the Daily Challenge
+    dailyStreak:{ count:0, best:0, lastDate:null },
+    topicStats:{},
+    userStats:{ lastActionType:null, lastActiveAt:0, sessionsToday:0 },
+    analytics:{ daily:{} },
+    // topics toggled off are excluded from flashcards/quizzes/daily challenge
+    disabledTopics:{},
+    journey:{ completedCards:{}, completedQuizQuestions:{} },
+  };
+ }
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return baseState();
+    const s = JSON.parse(raw);
+    s.reviews ||= {};
+    s.stats ||= { studied:0 };
+    s.quiz ||= { attempted:0, correct:0, bestStreakAllTime:0 };
+    s.weekly ||= {};
+    s.topicLevels ||= {};
+    s.daily ||= {};
+    s.dailyStreak ||= { count:0, best:0, lastDate:null };
+    s.topicStats ||= {};
+    s.userStats ||= { lastActionType:null, lastActiveAt:0, sessionsToday:0 };
+    s.analytics ||= { daily:{} };
+    s.disabledTopics ||= {};
+    s.journey ||= { completedCards:{}, completedQuizQuestions:{} };
+    s.journey.completedCards ||= {};
+    s.journey.completedQuizQuestions ||= {};
+    return s;
+  }catch{
+    return baseState();
+   }
+ }
+var STATE = loadState();
+function saveState(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE)); }
+
+
+function isTopicEnabled(topicId){
+  if(!STATE) STATE = loadState();
+  STATE.disabledTopics ||= {};
+  return !STATE.disabledTopics[topicId];
+}
+function enabledTopicIds(){
+  return TOPICS.map(t=>t.id).filter(id=>isTopicEnabled(id));
+ }
+const $ = (id)=>document.getElementById(id);
+ 
+// Safe HTML escaping for dynamic template strings
+function escapeHtml(v){
+  return String(v)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+ }
+ 
+ 
+
+ /* ==========================================================
+   DAILY CHALLENGE (purposeful + rotating)
+    ========================================================== */
+const DAILY_ACTIVITY_TARGETS = { lesson:1, study:10, quiz:1, game:1 };
+const DAILY_TYPES = ["lesson","study","quiz","game"];
+const DAILY_TASK_COUNT = 3;
+ 
+let NEXT_QUIZ_FROM_DAILY_CHALLENGE = false;
+ 
+function pad2(n){ return String(n).padStart(2,'0'); }
+function todayKey(){
+   const d = new Date();
+  return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+ }
+function keyToDate(k){
+  // k = YYYY-MM-DD
+  const [y,m,dd] = String(k).split('-').map(n=>parseInt(n,10));
+  return new Date(y, (m||1)-1, dd||1);
+ }
+function isSameDay(a,b){
+  return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
+ }
+function addDaysKey(k, delta){
+  const d = keyToDate(k);
+  d.setDate(d.getDate() + delta);
+  return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`;
+ }
+function yesterdayKey(){
+  return addDaysKey(todayKey(), -1);
+ }
+function dayOfYear(d){
+  const start = new Date(d.getFullYear(), 0, 0);
+  const diff = d - start;
+  return Math.floor(diff / 86400000);
+ }
+function dailyIndex(){ return dayOfYear(new Date()); }
+function getDailyTopicId(){
+  const current = getCurrentJourneyTopicId();
+  if(current && isTopicEnabled(current)) return current;
+  return enabledTopicIds()[0] || null;
+ }
+function getActiveDailyTopicId(){
+  return ensureDaily().topicId;
+ }
+function dailyActivityLabel(type){
+  if(type === "lesson") return "Lesson";
+  if(type === "study") return "Study Cards";
+  if(type === "quiz") return "Quiz";
+  if(type === "game") return "Game";
+  return "Activity";
+ }
+function isJourneyStudyMode(mode){
+  return mode === "journey" || mode === "study";
+}
+function isJourneyCardComplete(cardId){
+  if(!cardId) return false;
+  STATE.journey ||= { completedCards:{}, completedQuizQuestions:{} };
+  STATE.journey.completedCards ||= {};
+  return !!STATE.journey.completedCards[cardId];
+}
+function markJourneyCardComplete(cardId){
+  if(!cardId) return;
+  STATE.journey ||= { completedCards:{}, completedQuizQuestions:{} };
+  STATE.journey.completedCards ||= {};
+  STATE.journey.completedQuizQuestions ||= {};
+  STATE.journey.completedCards[cardId] = 1;
+}
+function isJourneyQuizQuestionComplete(question){
+  const questionId = question?.id;
+  if(!questionId) return false;
+  STATE.journey ||= { completedCards:{}, completedQuizQuestions:{} };
+  STATE.journey.completedQuizQuestions ||= {};
+  return !!STATE.journey.completedQuizQuestions[questionId];
+}
+function markJourneyQuizQuestionComplete(question){
+  const questionId = question?.id;
+  if(!questionId) return;
+  STATE.journey ||= { completedCards:{}, completedQuizQuestions:{} };
+  STATE.journey.completedQuizQuestions ||= {};
+  STATE.journey.completedQuizQuestions[questionId] = 1;
+}
+function getJourneyCardsForTopic(topicId){
+  return ALL_CARDS.filter(c=>c.topicId===topicId && isTopicEnabled(c.topicId) && !isJourneyCardComplete(c.id));
+}
+function getJourneyStudyStats(topicId){
+  const topicCards = ALL_CARDS.filter(c=>c.topicId===topicId);
+  const total = topicCards.length;
+  const done = topicCards.reduce((count, card)=>count + (isJourneyCardComplete(card.id) ? 1 : 0), 0);
+  const remaining = Math.max(0, total - done);
+  return { total, done, remaining };
+}
+function isDailyActivityDone(activity){
+  if(activity?.type === "quiz"){
+    return Number(activity?.bestPercent||0) >= 100;
+   }
+  return Number(activity?.progress||0) >= Number(activity?.target||1);
+}
+function topicHasLessonRemaining(topicId){
+  const topic = lessonsData.find(t=>t.id===topicId);
+  if(!topic) return false;
+  return getTopicLessons(topic).some(lesson=>getLessonJourneyState(lesson.id) !== "completed");
+}
+function topicHasStudyRemaining(topicId){
+  return getJourneyCardsForTopic(topicId).length > 0;
+}
+function topicHasQuizRemaining(topicId){
+  return getJourneyQuizPool(topicId).length > 0;
+}
+function topicHasGameRemaining(topicId){
+  const s = touchTopicStats(topicId);
+  return Number(s.gameCompletions||0) < 1;
+}
+function isDailyTypeValidForTopic(type, topicId){
+  if(type === "lesson") return topicHasLessonRemaining(topicId);
+  if(type === "study") return topicHasStudyRemaining(topicId);
+  if(type === "quiz") return topicHasQuizRemaining(topicId);
+  if(type === "game") return topicHasGameRemaining(topicId);
+  return false;
+}
+function getDailyStudyTarget(topicId){
+  const remaining = getJourneyCardsForTopic(topicId).length;
+  if(remaining <= 0) return 0;
+  return Math.min(DAILY_ACTIVITY_TARGETS.study||10, remaining);
+}
+function buildDailyActivities(topicId, prevCombo){
+  const preferred = DAILY_TYPES.filter(type=>isDailyTypeValidForTopic(type, topicId));
+  const lessonAvailable = topicHasLessonRemaining(topicId);
+  const fallbackPool = DAILY_TYPES.filter(type=>type !== "lesson" || lessonAvailable);
+  const pool = (preferred.length >= DAILY_TASK_COUNT ? preferred : fallbackPool).slice();
+ 
+  const seedBase = `${todayKey()}|${topicId}|${prevCombo||""}`;
+  let seed = 2166136261;
+  for(let i=0;i<seedBase.length;i++){
+    seed ^= seedBase.charCodeAt(i);
+    seed = Math.imul(seed, 16777619);
+   }
+  const rand = ()=>{
+    seed += 0x6D2B79F5;
+    let t = seed;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+ 
+  for(let i=pool.length-1;i>0;i--){
+    const j = Math.floor(rand() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+   }
+ 
+  const selected = pool.slice(0, Math.min(DAILY_TASK_COUNT, pool.length));
+  return selected.map(type=>({ type, target:(type === "study" ? getDailyStudyTarget(topicId) : (DAILY_ACTIVITY_TARGETS[type]||1)), progress:0, completed:false, label:dailyActivityLabel(type) }));
+}
+function syncDailyActivityProgress(daily){
+  if(!daily || !Array.isArray(daily.activities)) return;
+  const topicId = daily.topicId;
+  daily.activities.forEach(activity=>{
+    if(!activity || !activity.type) return;
+    if(activity.type === "lesson"){
+      const topic = lessonsData.find(t=>t.id===topicId);
+      const lessons = topic ? getTopicLessons(topic) : [];
+      const done = lessons.reduce((n,l)=>n + (getLessonJourneyState(l.id) === "completed" ? 1 : 0), 0);
+      activity.progress = Math.min(activity.target||1, done > 0 ? 1 : 0);
+    }else if(activity.type === "study"){
+      activity.progress = Math.min(activity.target||10, Number(activity.progress||0));
+    }else if(activity.type === "quiz"){
+      const stats = topicQuizStats(topicId);
+      activity.bestPercent = Math.max(Number(activity.bestPercent||0), Number(stats.quizBestPercent||0));
+      activity.progress = Number(activity.bestPercent||0) >= 100 ? Number(activity.target||1) : 0;
+    }else if(activity.type === "game"){
+      const stats = touchTopicStats(topicId);
+      activity.progress = Math.min(activity.target||1, Number(stats.gameCompletions||0) > 0 ? 1 : 0);
+    }
+    activity.completed = isDailyActivityDone(activity);
+  });
+}
+function getDailyExamId(topicId){
+  const list = EXAM_BANK.filter(x=>x.topicId===topicId);
+  if(!list.length) return null;
+  return list[dailyIndex() % list.length].id;
+ }
+ 
+function ensureDaily(){
+  STATE.daily ||= {};
+  const k = todayKey();
+  const wantTopic = getDailyTopicId();
+  const enabled = enabledTopicIds();
+  const VALID_DAILY_TYPES = new Set(["lesson","study","quiz","game"]);
+ 
+  const migrateLegacy = (row)=>{
+    if(!row || typeof row !== "object") return null;
+    if(Array.isArray(row.activities)) return row;
+    const activities = [];
+    if(row.flash != null){
+      activities.push({ type:"study", target:Math.max(1, getDailyStudyTarget(row.topicId || wantTopic)), progress:Math.min(Math.max(1, getDailyStudyTarget(row.topicId || wantTopic)), Number(row.flash||0)), completed:Number(row.flash||0) >= Math.max(1, getDailyStudyTarget(row.topicId || wantTopic)), label:"Study Cards" });
+    }
+    if(Number(row.quizBest||0) > 0){
+      activities.push({ type:"quiz", target:1, progress:Number(row.quizBest||0) >= 100 ? 1 : 0, completed:Number(row.quizBest||0) >= 100, label:"Quiz" });
+     }
+    return {
+      topicId: row.topicId,
+      activities: activities.slice(0,DAILY_TASK_COUNT),
+      comboKey: row.comboKey || null,
+      completed: !!row.completed,
+      migratedAt: Date.now()
+    };
+  };
+
+  const hasValidTopic = (topicId)=> !!(topicId && TOPICS.some(t=>t.id===topicId));
+  const hasValidActivities = (activities)=> Array.isArray(activities)
+    && activities.length > 0
+    && activities.every(a=>a && a.type && VALID_DAILY_TYPES.has(a.type));
+  const sanitizeActivities = (activities)=> Array.isArray(activities)
+    ? activities.filter(a=>a && a.type && VALID_DAILY_TYPES.has(a.type))
+    : [];
+  const rebuildDaily = (topicId, prevCombo)=>{
+    const nextTopic = hasValidTopic(topicId) ? topicId : wantTopic;
+    let activities = sanitizeActivities(buildDailyActivities(nextTopic, prevCombo));
+    if(!activities.length) activities = sanitizeActivities(buildDailyActivities(nextTopic, null));
+    return {
+      topicId: nextTopic,
+      activities,
+      comboKey: activities.map(a=>a.type).sort().join("+") || null,
+      completed: false
+    };
+  };
+
+  let daily = migrateLegacy(STATE.daily[k]);
+  if(!daily) daily = { topicId: wantTopic, activities:[], comboKey:null, completed:false };
+
+  const rowIsValid = hasValidTopic(daily.topicId) && hasValidActivities(daily.activities);
+  if(!enabled.includes(daily.topicId)) daily.topicId = wantTopic;
+  if(!rowIsValid || daily.topicId !== wantTopic){
+    const prev = STATE.daily[addDaysKey(k,-1)];
+    const prevCombo = Array.isArray(prev?.activities) ? prev.activities.map(a=>a.type).sort().join("+") : null;
+    daily = rebuildDaily(wantTopic, prevCombo);
+   }
+ 
+  syncDailyActivityProgress(daily);
+  daily.completed = daily.activities.length > 0 && daily.activities.every(isDailyActivityDone);
+  STATE.daily[k] = daily;
+  saveState();
+  return STATE.daily[k];
+ }
+ 
+
+function normalizeDailyStreak(){
+  // Duolingo-style: streak remains “alive” if last completion was yesterday.
+  STATE.dailyStreak ||= { count:0, best:0, lastDate:null };
+  const last = STATE.dailyStreak.lastDate;
+  if(!last){
+    // Migration / safety: infer last completion from daily log if available
+    try{
+      const keys = Object.keys(STATE.daily||{}).sort();
+      let inferred = null;
+      for(let i=keys.length-1;i>=0;i--){
+        const k = keys[i];
+        if(STATE.daily[k]?.completed){ inferred = k; break; }
+      }
+      if(inferred){
+        STATE.dailyStreak.lastDate = inferred;
+        // Compute streak backwards (in case user has a run already)
+        let count = 0;
+        let cur = inferred;
+        while(STATE.daily[cur]?.completed){
+          count++;
+          cur = addDaysKey(cur, -1);
+        }
+        STATE.dailyStreak.count = count;
+        STATE.dailyStreak.best = Math.max(STATE.dailyStreak.best||0, count);
+        saveState();
+        return;
+       }
+    }catch(e){}
+    STATE.dailyStreak.count = 0;
+    STATE.dailyStreak.best = Math.max(STATE.dailyStreak.best||0, 0);
+    saveState();
+    return;
+   }
+  const t = todayKey();
+  const y = yesterdayKey();
+  if(last === t || last === y) return; // still valid
+  // Missed at least one full day → streak breaks
+  STATE.dailyStreak.count = 0;
+  STATE.dailyStreak.best = Math.max(STATE.dailyStreak.best||0, 0);
+  STATE.dailyStreak.lastDate = null;
+  saveState();
+}
+ 
+function updateDailyStreakOnComplete(){
+  STATE.dailyStreak ||= { count:0, best:0, lastDate:null };
+  const t = todayKey();
+  const last = STATE.dailyStreak.lastDate;
+  if(last === t) return; // already counted today
+  if(last === yesterdayKey()) STATE.dailyStreak.count = (STATE.dailyStreak.count||0) + 1;
+  else STATE.dailyStreak.count = 1;
+  STATE.dailyStreak.best = Math.max(STATE.dailyStreak.best||0, STATE.dailyStreak.count);
+  STATE.dailyStreak.lastDate = t;
+  saveState();
+}
+ 
+function updateDailyUI(){
+  const d = ensureDaily();
+  const topicTitle = (TOPICS.find(t=>t.id===d.topicId)||{}).title || d.topicId;
+ 
+  const label = document.getElementById('dailyTopicLabel');
+  if(label) label.textContent = topicTitle;
+ 
+  const streakCard = document.getElementById('streakHeroCard');
+  if(streakCard){
+    const dailyTopicBackgrounds = {
+      t1: "./topic1.png?v=1",
+      t2: "./topic2.png?v=1",
+      t3: "./section-bg.jpg?v=8",
+      t4: "./section-bg.jpg?v=8"
+    };
+    const bg = dailyTopicBackgrounds[d.topicId];
+    streakCard.style.setProperty('--dailyTopicBg', bg ? `url('${bg}')` : 'none');
+  }
+ 
+  const timePill = document.getElementById('dailyTimePill');
+  if(timePill) timePill.textContent = `📅 ${todayKey()} • 10–15 mins`;
+ 
+ 
+  const trophy = document.getElementById('streakCompleteBanner');
+  if(trophy){
+    if(d.completed) trophy.classList.remove('hidden');
+    else trophy.classList.add('hidden');
+  }
+  // Primary render path for Daily checklist + streak hero to avoid split updates.
+  try{ renderStreakHero(); }catch(e){}
+}
+ 
+ 
+ 
+function markDailyMeaningfulStep(topicId){
+  // Legacy hook kept for callers; completion now only happens in checkDailyComplete().
+  const d = ensureDaily();
+  if(!topicId || !isTopicEnabled(topicId) || topicId !== d.topicId) return;
+  checkDailyComplete();
+ }
+ 
+function formatHMS(ms){
+  const s = Math.max(0, Math.floor(ms/1000));
+  const hh = Math.floor(s/3600);
+  const mm = Math.floor((s%3600)/60);
+  const ss = s%60;
+  return `${pad2(hh)}:${pad2(mm)}:${pad2(ss)}`;
+}
+function msUntilReset(){
+  const now = new Date();
+  const end = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1, 0,0,0,0);
+  return end - now;
+}
+function streakTier(count){
+  if(count >= 30) return "🏆 Historian Mode (30)";
+  if(count >= 14) return "🌟 Revolution Ready (14)";
+  if(count >= 7)  return "✅ Moderniser (7)";
+  if(count >= 3)  return "🌱 Reformer (3)";
+  if(count >= 1)  return "🔥 Started (1)";
+  return "Start today";
+}
+function nextMilestone(count){
+  const targets = [3,7,14,30];
+  for(const t of targets) if(count < t) return t;
+  return 50;
+ }
+let _streakTimer = null;
+function renderStreakHero(){
+  normalizeDailyStreak();
+  const d = ensureDaily();
+  const count = STATE.dailyStreak?.count || 0;
+  const best  = STATE.dailyStreak?.best || 0;
+ 
+  [["streakAward5",5],["streakAward10",10],["streakAward15",15],["streakAward20",20]].forEach(([id, milestone])=>{
+    const badge = $(id);
+    if(badge) badge.classList.toggle("unlocked", count >= milestone);
+  });
+
+  const big = $("streakBigNum"); if(big) big.textContent = String(count);
+  const bestEl = $("streakBestNum"); if(bestEl) bestEl.textContent = String(best);
+  const streakPillBtn = $("streakProgressBtn");
+  if(streakPillBtn) streakPillBtn.classList.toggle("is-protected", !!d.completed);
+  // tier label removed from hero to reduce visual noise
+
+  // Header streak pill
+  try{ renderStreakSignal(); }catch(e){}
+
+  // Status + checklist
+  const doneToday = !!d.completed;
+  const box = $("streakStatusBox");
+  const icon = $("streakStatusIcon");
+  const textEl = $("streakStatusText");
+  const cd = $("streakCountdown");
+
+  const [a1,a2,a3] = Array.isArray(d.activities) ? d.activities : [];
+  const dailyTaskIconSvg = (type)=>{
+    if(type === "quiz") return '<svg class="checkIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 8-12h-6z"></path></svg>';
+    if(type === "lesson") return '<svg class="checkIcon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M6 8h12"></path><path d="M6 12h7"></path><path d="m13 19 6-6"></path><path d="m18.4 12.6 1.9 1.9"></path></svg>';
+    if(type === "game") return '<svg class="checkIcon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="10" rx="4"></rect><path d="M8 13h4"></path><path d="M10 11v4"></path><circle cx="16.5" cy="12" r="1"></circle><circle cx="18.5" cy="14" r="1"></circle></svg>';
+    return '<svg class="checkIcon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 6h6a4 4 0 0 1 4 4v11a3 3 0 0 0-3-3H2z"></path><path d="M22 6h-6a4 4 0 0 0-4 4v11a3 3 0 0 1 3-3h7z"></path><path d="M12 10v11"></path></svg>';
+  };
+  const rows = [
+    { a:a1, dot:"chkAct1Dot", btn:"goDailyAct1" },
+    { a:a2, dot:"chkAct2Dot", btn:"goDailyAct2" },
+    { a:a3, dot:"chkAct3Dot", btn:"goDailyAct3" }
+  ];
+  rows.forEach(({a,dot,btn}, idx)=>{
+    const done = !!a?.completed;
+    const dotEl = $(dot);
+    if(dotEl){
+      dotEl.classList.toggle("done", done);
+      dotEl.innerHTML = dailyTaskIconSvg(a?.type);
+    }
+    const btnEl = $(btn); if(btnEl) btnEl.classList.toggle("hidden", !a);
+    if(btnEl) btnEl.classList.toggle("is-complete", done);
+    if(btnEl) btnEl.setAttribute("aria-label", a?.label ? `Open ${a.label}` : `Open daily activity ${idx+1}`);
+  });
+
+  if(box){
+    box.classList.toggle("safe", doneToday);
+    box.classList.toggle("risk", !doneToday);
+  }
+  if(icon) icon.textContent = doneToday ? "✅" : "⚠️";
+  if(textEl){
+    textEl.textContent = doneToday
+      ? "Streak protected for today — keep momentum with your next step."
+      : "Streak at risk — complete today’s Daily Challenge to protect it.";
+  }
+  if(cd) cd.textContent = formatHMS(msUntilReset());
+
+  // Milestone progress
+  const target = nextMilestone(count);
+  const nextLabel = $("nextMilestoneLabel");
+  if(nextLabel){
+    const remaining = Math.max(0, target - count);
+    nextLabel.textContent = remaining === 0
+      ? `Unlocked: ${streakTier(count)}`
+      : `Next unlock: ${streakTier(target)} — ${remaining} to go`;
+  }
+  const fill = $("milestoneBarFill");
+  if(fill){
+    const pct = Math.max(0, Math.min(1, count/target)) * 100;
+    fill.style.width = `${pct}%`;
+  }
+ 
+  // Week strip (last 7 days ending today)
+  const strip = $("weekStrip");
+  if(strip){
+    const today = todayKey();
+    const days = [];
+    for(let i=6;i>=0;i--){
+      const k = addDaysKey(today, -i);
+      const dt = keyToDate(k);
+      const letter = ["S","M","T","W","T","F","S"][dt.getDay()];
+      const completed = !!STATE.daily?.[k]?.completed;
+      const missed = (k !== today) && !completed; // don't mark today as missed until it passes
+      days.push({k, letter, completed, missed});
+    }
+    strip.innerHTML = days.map(dy=>{
+      const cls = dy.completed ? "dayBlock done" : (dy.missed ? "dayBlock missed" : "dayBlock");
+      const title = dy.completed ? `${dy.k}: Completed` : (dy.missed ? `${dy.k}: Missed` : `${dy.k}: Pending`);
+      return `<div class="${cls}" title="${title}">${dy.letter}</div>`;
+    }).join("");
+  }
+ 
+ 
+  // Completion banner + button behaviour
+  const completeBanner = $("streakCompleteBanner");
+  if(completeBanner){
+    completeBanner.classList.toggle("hidden", !doneToday);
+  }
+ 
+  const btn = $("protectStreakBtn");
+  if(btn){
+    const cta = getChallengeCtaConfig(d);
+    btn.classList.remove("hidden");
+    const safeTitle = escapeHtml(cta.title || "Continue learning");
+    const safeTopic = escapeHtml(cta.topic || "");
+    btn.innerHTML = `<span class="protectBtnText"><span class="protectBtnTitle">${safeTitle}</span><span class="protectBtnTopic">${safeTopic}</span></span>`;
+    btn.disabled = cta.disabled;
+    btn.onclick = cta.onClick;
+    btn.style.background = "";
+    btn.setAttribute("aria-label", `${cta.title || "Continue learning"}: ${cta.topic || ""}`.trim());
+  }
+ 
+ 
+  // Countdown tick
+  clearInterval(_streakTimer);
+  _streakTimer = setInterval(()=>{
+    const el = $("streakCountdown");
+    if(el) el.textContent = formatHMS(msUntilReset());
+  }, 1000);
+  updateBannerTitlePill();
+ 
+ }
+ 
+function checkDailyComplete(){
+  const d = ensureDaily();
+  if(d.completed) return;
+  syncDailyActivityProgress(d);
+  d.completed = Array.isArray(d.activities) && d.activities.length > 0 && d.activities.every(isDailyActivityDone);
+  if(d.completed){
+    d.completed = true;
+    // Update Duolingo-style streak when a Daily Challenge is completed
+    updateDailyStreakOnComplete();
+    saveState();
+    logEvent("daily_challenge_completed", { topicId: d.topicId });
+    updateDailyUI();
+    buildDailyCoachRecommendation();
+    try{ computeKpis(); }catch(e){}
+    closeQuizCompleteModal();
+    showDailyChallengeCompleteModal(d.topicId);
+    try{ confetti.fall(3200); }catch(e){}
+    try{ confetti.burst(200); }catch(e){}
+  }
+ }
+ 
+function getDailyActivity(type){
+  const d = ensureDaily();
+  const activity = Array.isArray(d.activities) ? d.activities.find(a=>a?.type===type) : null;
+  return { d, activity };
+ }
+ 
+function maybeShowDailyNextTask(topicId, type, wasComplete){
+  const d = ensureDaily();
+  const activity = Array.isArray(d.activities) ? d.activities.find(a=>a?.type===type) : null;
+  const nowComplete = !!activity?.completed;
+  if(!d.completed && !wasComplete && nowComplete) showDailyNextTaskModal(topicId);
+ }
+ 
+function recordDailyFlashcard(topicId, cardId){
+  const { d, activity } = getDailyActivity("study");
+  if(topicId !== d.topicId || !activity) return;
+  if(cardId){
+    d.revealedCards = Array.isArray(d.revealedCards) ? d.revealedCards : [];
+    if(d.revealedCards.includes(cardId)) return;
+    d.revealedCards.push(cardId);
+   }
+  const wasComplete = !!activity.completed;
+  activity.progress = Math.min(Number(activity.target||10), Number(activity.progress||0) + 1);
+  activity.completed = isDailyActivityDone(activity);
+  saveState();
+  buildDailyCoachRecommendation();
+  updateDailyUI();
+  checkDailyComplete();
+  maybeShowDailyNextTask(topicId, "study", wasComplete);
+ }
+ 
+function recordDailyQuiz(topicId, percent){
+  const { d, activity } = getDailyActivity("quiz");
+  if(topicId !== d.topicId || !activity) return;
+  const wasComplete = !!activity.completed;
+  const p = Math.max(0, Math.min(100, Math.round(percent)));
+  activity.bestPercent = Math.max(Number(activity.bestPercent||0), p);
+  activity.progress = Number(activity.bestPercent||0) >= 100 ? Number(activity.target||1) : 0;
+  activity.completed = isDailyActivityDone(activity);
+  const bucket = analyticsDayBucket(todayKey());
+  bucket.quizAttempts = Number(bucket.quizAttempts || 0) + 1;
+  bucket.quizTotal = Number(bucket.quizTotal || 0) + p;
+  bucket.quizAvg = Math.round(bucket.quizTotal / Math.max(1, bucket.quizAttempts));
+  saveState();
+  buildDailyCoachRecommendation();
+  updateDailyUI();
+  checkDailyComplete();
+  maybeShowDailyNextTask(topicId, "quiz", wasComplete);
+ }
+ 
+function recordDailyLesson(topicId){
+  const { d, activity } = getDailyActivity("lesson");
+  if(topicId !== d.topicId || !activity) return;
+  const wasComplete = !!activity.completed;
+  activity.progress = Math.min(Number(activity.target||1), Number(activity.progress||0) + 1);
+  activity.completed = isDailyActivityDone(activity);
+  saveState();
+  buildDailyCoachRecommendation();
+  updateDailyUI();
+  checkDailyComplete();
+  maybeShowDailyNextTask(topicId, "lesson", wasComplete);
+ }
+ 
+function recordDailyGame(topicId){
+  const { d, activity } = getDailyActivity("game");
+  if(topicId !== d.topicId || !activity) return;
+  const wasComplete = !!activity.completed;
+  activity.progress = Math.min(Number(activity.target||1), Number(activity.progress||0) + 1);
+  activity.completed = isDailyActivityDone(activity);
+  saveState();
+  buildDailyCoachRecommendation();
+  updateDailyUI();
+  checkDailyComplete();
+  maybeShowDailyNextTask(topicId, "game", wasComplete);
+ }
+ 
+
+/* ==========================================================
+   XP LEVELS + LEVEL-UP NOTIFICATIONS (Topic tiles)
+   ========================================================== */
+function getXpLevel(avgScore01to2){
+  // avgScore is 0..2 based on weak/developing/secure distribution
+  // Thresholds chosen to feel achievable but meaningful.
+  if(avgScore01to2 >= 1.8) return { key:"master", label:"MASTER", rank:3, icon:"🏆" };
+  if(avgScore01to2 >= 1.35) return { key:"secure", label:"SECURE", rank:2, icon:"✅" };
+  if(avgScore01to2 >= 0.6) return { key:"developing", label:"DEVELOPING", rank:1, icon:"🌱" };
+  return { key:"starting", label:"STARTING OUT", rank:0, icon:"🚦" };
+ }
+ 
+let _bannerTimer = null;
+function showLevelUpBanner(html){
+  const el = document.getElementById("levelUpBanner");
+  if(!el) return;
+  el.innerHTML = html;
+  el.classList.add("show");
+  clearTimeout(_bannerTimer);
+  _bannerTimer = setTimeout(()=>{ el.classList.remove("show"); }, 2400);
+ }
+ 
+function celebrateLevelUp(topicTitle, levelObj){
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(!reduceMotion && typeof confetti !== "undefined" && confetti?.burst){
+    confetti.burst(160);
+   }
+  const safeTitle = escapeHtml(topicTitle);
+  showLevelUpBanner(`
+    <div>${levelObj.icon} Level up: <span style="text-transform:uppercase">${escapeHtml(levelObj.label)}</span></div>
+    <div class="smallNote">${safeTitle}</div>
+  `);
+ }
+ 
+function startOfTodayTs(){
+  const d = new Date();
+  d.setHours(0,0,0,0);
+  return d.getTime();
+ }
+function addDaysTs(startTs, days){
+  const d = new Date(startTs);
+  d.setDate(d.getDate()+days);
+  d.setHours(0,0,0,0);
+  return d.getTime();
+}
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function unique(arr){
+  const seen=new Set(), out=[];
+  for(const x of arr){
+    const k=String(x).toLowerCase();
+    if(seen.has(k)) continue;
+    seen.add(k);
+    out.push(x);
+  }
+  return out;
+}
+function debounce(fn, ms){
+  let t;
+  return (...args)=>{ clearTimeout(t); t=setTimeout(()=>fn(...args), ms); };
+ }
+ 
+/* ==========================================================
+   ISO WEEK KEY (weekly badge)
+   ========================================================== */
+function getISOWeekKey(date = new Date()){
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+  const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+  const year = d.getUTCFullYear();
+  return `${year}-W${String(weekNo).padStart(2,"0")}`;
+}
+function getWeeklyBucket(){
+  const key = getISOWeekKey(new Date());
+  STATE.weekly[key] ||= { attempted:0, correct:0, bestStreak:0 };
+  return { key, bucket: STATE.weekly[key] };
+}
+function weeklyPercent(){
+  const { bucket } = getWeeklyBucket();
+  if(bucket.attempted<=0) return 0;
+  return Math.round((bucket.correct/bucket.attempted)*100);
+}
+function getWeeklyBadge(){
+  const { bucket } = getWeeklyBucket();
+  const enough = bucket.attempted >= 10;
+  if(!enough) return { name:"—", icon:"🏅", note:"Do 10 quiz Qs this week to unlock." };
+  const pct = weeklyPercent();
+  if(pct>=90) return { name:"Diamond", icon:"💎", note:"90%+ this week." };
+  if(pct>=80) return { name:"Gold", icon:"🥇", note:"80–89% this week." };
+  if(pct>=65) return { name:"Silver", icon:"🥈", note:"65–79% this week." };
+  return { name:"Bronze", icon:"🥉", note:"<65% this week — Focus then Mixed." };
+ }
+ 
+/* ==========================================================
+   CONFETTI (lightweight)
+   ========================================================== */
+const confetti = (() => {
+  const canvas = document.getElementById("confettiCanvas");
+  const ctx = canvas.getContext("2d");
+  let W=0,H=0,pieces=[],running=false;
+
+  function resize(){
+    W = canvas.width = window.innerWidth * devicePixelRatio;
+    H = canvas.height = window.innerHeight * devicePixelRatio;
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+   }
+  window.addEventListener("resize", resize);
+ 
+  function spawn(count=110){
+    resize();
+    const colors = [
+      [110,144,202],[163,194,223],[126,185,170],[158,183,212],[183,142,161]
+    ];
+    pieces = Array.from({length:count}).map(()=> {
+      const c = colors[Math.floor(Math.random()*colors.length)];
+      return {
+        x: Math.random()*W,
+        y: -20*Math.random()*devicePixelRatio,
+        r: (4+Math.random()*7)*devicePixelRatio,
+        vx: (-2 + Math.random()*4)*devicePixelRatio,
+        vy: (3 + Math.random()*6)*devicePixelRatio,
+        rot: Math.random()*Math.PI,
+        vr: (-0.2 + Math.random()*0.4),
+        c,
+        life: 110 + Math.random()*40
+      };
+    });
+  }
+  function tick(){
+    if(!running) return;
+    ctx.clearRect(0,0,W,H);
+    pieces.forEach(p=>{
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.vr;
+      p.vy += 0.03*devicePixelRatio;
+      p.life--;
+ 
+      ctx.save();
+      ctx.translate(p.x,p.y);
+      ctx.rotate(p.rot);
+      ctx.fillStyle = `rgba(${p.c[0]},${p.c[1]},${p.c[2]},0.9)`;
+      ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r*0.6);
+      ctx.restore();
+    });
+    pieces = pieces.filter(p=>p.life>0 && p.y < H+50*devicePixelRatio);
+    if(pieces.length===0){ running=false; ctx.clearRect(0,0,W,H); return; }
+    requestAnimationFrame(tick);
+  }
+  function burst(count=110){
+    spawn(count);
+    running=true;
+    requestAnimationFrame(tick);
+  }
+  function fall(durationMs=2600){
+    const count = Math.max(120, Math.floor(window.innerWidth / 7));
+    burst(count);
+    const interval = setInterval(()=>spawn(count), 420);
+    setTimeout(()=>clearInterval(interval), Math.max(600, durationMs));
+  }
+  return { burst, fall };
+})();
+
+/* ==========================================================
+   NAV RULE
+   ========================================================== */
+function setTab(tabId){
+  const activePane = document.querySelector(".tabpane:not(.hidden)");
+  if(activePane && activePane.id === tabId){
+    return;
+  }
+  document.querySelectorAll(".navBtn").forEach(b=>b.classList.toggle("active", b.dataset.tab===tabId));
+  document.querySelectorAll(".tabpane").forEach(p=>p.classList.toggle("hidden", p.id!==tabId));
+  // Reset viewport position whenever changing tabs
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+
+  // Games: default to hub list when entering the tab
+  if(tabId==="games") gamesShowHub();
+
+  if(tabId === "home"){
+    renderHomeRecommendation();
+  }
+  if(tabId === "progress"){
+    renderProgressReport();
+  }
+  if(tabId === "lessons"){
+    renderLessons();
+   }
+ }
+document.querySelectorAll(".navBtn").forEach(btn=>{
+  btn.addEventListener("click", ()=>setTab(btn.dataset.tab));
+});
+ 
+const streakProgressBtn = $("streakProgressBtn");
+if(streakProgressBtn){
+  streakProgressBtn.addEventListener("click", ()=>setTab("progress"));
+ }
+ 
+/* Games hub navigation */
+const GAME_PANES = ["gamesConnPane","gamesEmojiPane","gamesMatchPane","gamesTimelinePane","gamesBeatClockPane","gamesSnakeQuizPane"];
+const GAME_LABELS = {
+  gamesConnPane: "Connections",
+  gamesEmojiPane: "Emoji Multiple Choice",
+  gamesMatchPane: "Match-Up",
+  gamesTimelinePane: "Timeline Tension",
+  gamesBeatClockPane: "Beat the Clock",
+  gamesSnakeQuizPane: "Snake Quiz"
+};
+let LAST_GAME_PANE = null;
+ 
+function updateGamesHubMeta(){
+  const meta = $("gamesHubMeta");
+  const resumeBtn = $("gamesResumeBtn");
+  if(meta){
+    const daily = TOPICS.find(t=>t.id===getDailyTopicId())?.title || "Today's topic";
+    meta.textContent = `Daily topic: ${daily}. Mix one speed game + one precision game for best retention.`;
+  }
+  if(resumeBtn){
+    const canResume = !!LAST_GAME_PANE;
+    resumeBtn.classList.toggle("hidden", !canResume);
+    if(canResume){
+      resumeBtn.textContent = `↩️ Resume ${GAME_LABELS[LAST_GAME_PANE] || "last game"}`;
+    }
+  }
+ }
+ 
+function gamesShowHub(){
+  const gamesSection = $("games");
+  const hub = $("gamesHub");
+  if(!hub) return;
+  if(gamesSection) gamesSection.classList.remove("gamePaneActive");
+  hub.classList.remove("hidden");
+  GAME_PANES.forEach(id => $(id) && $(id).classList.add("hidden"));
+  if($("timelineTopicSelect")) tlPopulateSelect();
+  updateGamesHubMeta();
+  window.scrollTo(0,0);
+ }
+function openGamePane(paneId){
+  const gamesSection = $("games");
+  const hub = $("gamesHub");
+  if(gamesSection) gamesSection.classList.add("gamePaneActive");
+  if(hub) hub.classList.add("hidden");
+  LAST_GAME_PANE = paneId;
+  GAME_PANES.forEach(id => $(id) && $(id).classList.toggle("hidden", id!==paneId));
+  window.scrollTo(0,0);
+ }
+window.addEventListener("DOMContentLoaded", ()=>{
+  const openConn = $("openConnBtn"), openEmoji = $("openEmojiBtn"), openMatch = $("openMatchBtn"), openTimeline = $("openTimelineBtn"), openBeatClock = $("openBeatClockBtn"), openSnakeQuiz = $("openSnakeQuizBtn");
+  const backConn = $("backFromConn"), backEmoji = $("backFromEmoji"), backMatch = $("backFromMatch"), backTimeline = $("backFromTimeline"), backBeatClock = $("backFromBeatClock"), backSnakeQuiz = $("backFromSnakeQuiz");
+  const quickStart = $("gamesQuickStartBtn");
+  const resume = $("gamesResumeBtn");
+ 
+  function launchGameNow(pane){
+    openGamePane(pane);
+    if(pane === "gamesConnPane"){
+      const sel = $("connTopicSelect");
+      if(sel && sel.options.length){
+        const daily = getDailyTopicId();
+        if(Array.from(sel.options).some(o=>o.value===daily)) sel.value = daily;
+        sel.dispatchEvent(new Event("change"));
+       }
+      return;
+     }
+    if(pane === "gamesEmojiPane"){
+      const btn = $("btnStartEmoji");
+      if(btn) btn.click();
+      return;
+     }
+    if(pane === "gamesMatchPane"){
+      const btn = $("btnStartMatch");
+      if(btn) btn.click();
+      return;
+     }
+    if(pane === "gamesTimelinePane"){
+      const btn = $("btnStartTimeline");
+      if(btn) btn.click();
+      return;
+     }
+    if(pane === "gamesBeatClockPane"){
+      const btn = $("btnStartBeatClock");
+      if(btn) btn.click();
+      return;
+    }
+    if(pane === "gamesSnakeQuizPane"){
+      const btn = $("btnStartSnakeQuiz");
+      if(btn) btn.click();
+     }
+   }
+ 
+  if(openConn) openConn.addEventListener("click", ()=>{ markGameSessionCompleted("connections", getDailyTopicId()); launchGameNow("gamesConnPane"); });
+  if(openEmoji) openEmoji.addEventListener("click", ()=>{ markGameSessionCompleted("emoji", $("emojiTopicSelect").value === "MIXED" ? getDailyTopicId() : $("emojiTopicSelect").value); launchGameNow("gamesEmojiPane"); });
+  if(openMatch) openMatch.addEventListener("click", ()=>{ markGameSessionCompleted("match", $("matchTopicSelect").value === "MIXED" ? getDailyTopicId() : $("matchTopicSelect").value); launchGameNow("gamesMatchPane"); });
+  if(openTimeline) openTimeline.addEventListener("click", ()=>{ markGameSessionCompleted("timeline", $("timelineTopicSelect")?.value || getDailyTopicId()); launchGameNow("gamesTimelinePane"); });
+  if(openBeatClock) openBeatClock.addEventListener("click", ()=>{ markGameSessionCompleted("beat_clock", getDailyTopicId()); launchGameNow("gamesBeatClockPane"); });
+  if(openSnakeQuiz) openSnakeQuiz.addEventListener("click", ()=>{
+    const topic = $("snakeTopicSelect")?.value || "MIXED";
+    markGameSessionCompleted("snake_quiz", topic === "MIXED" ? getDailyTopicId() : topic);
+    launchGameNow("gamesSnakeQuizPane");
+  });
+
+  if(quickStart) quickStart.addEventListener("click", ()=>{
+    const picker = ["gamesConnPane","gamesMatchPane","gamesEmojiPane","gamesTimelinePane","gamesBeatClockPane","gamesSnakeQuizPane"];
+    const pane = picker[Math.floor(Math.random()*picker.length)];
+    launchGameNow(pane);
+  });
+  if(resume) resume.addEventListener("click", ()=>{ if(LAST_GAME_PANE) openGamePane(LAST_GAME_PANE); });
+ 
+  if(backConn) backConn.addEventListener("click", gamesShowHub);
+  if(backEmoji) backEmoji.addEventListener("click", gamesShowHub);
+  if(backMatch) backMatch.addEventListener("click", gamesShowHub);
+  if(backTimeline) backTimeline.addEventListener("click", gamesShowHub);
+  if(backBeatClock) backBeatClock.addEventListener("click", gamesShowHub);
+  if(backSnakeQuiz) backSnakeQuiz.addEventListener("click", gamesShowHub);
+ 
+  updateGamesHubMeta();
+  initTimelineGame();
+});
+ 
+ 
+ 
+/* ==========================================================
+   LESSONS (basic SPA + player)
+   ========================================================== */
+const LESSON_MODES = ["overview", "simple", "exam"];
+ 
+const LESSON_ACTIVITY_KEY = "LESSON_ACTIVITY_KEY";
+const DRILL_HISTORY_KEY = "lessonsDrillHistoryV1";
+const LESSON_DEFAULT_TEXT_SCALE = 1.28;
+const lessonsNav = {
+  view:"topics",
+  topicId:null,
+  themeId:null,
+  lessonId:null,
+  selectedOptionIndex:null,
+  answers:{},
+  libraryFilters:{ topic:"all", theme:"all", search:"" },
+  collapsedLessonBlocks:{}
+};
+ 
+let lastLessonsPageKey = null;
+ 
+function getLessonsPageKey(){
+  const view = String(lessonsNav.view || "topics");
+  if(view === "player") return `player:${lessonsNav.topicId || ""}:${lessonsNav.themeId || ""}:${lessonsNav.lessonId || ""}`;
+  if(view === "topic-lessons") return `topic-lessons:${lessonsNav.topicId || ""}`;
+  return `topics:${lessonsNav.topicId || ""}`;
+ }
+ 
+function scrollLessonsToTopIfPageChanged(){
+  const pageKey = getLessonsPageKey();
+  const changed = pageKey !== lastLessonsPageKey;
+  const isInitialLessonsRender = lastLessonsPageKey === null;
+  lastLessonsPageKey = pageKey;
+  if(!changed) return;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top:0, behavior:(isInitialLessonsRender || prefersReducedMotion) ? "auto" : "smooth" });
+ }
+ 
+const lessonInfographicState = {
+  pointers:new Map(),
+  scale:1,
+  minScale:1,
+  maxScale:4,
+  fitScale:1,
+  x:0,
+  y:0,
+  baseDistance:0,
+  baseScale:1,
+  panStartX:0,
+  panStartY:0,
+  singlePointerId:null,
+  imageWidth:0,
+  imageHeight:0
+};
+
+function getLessonActivityStore(){
+   try{
+    const raw = localStorage.getItem(LESSON_ACTIVITY_KEY);
+    const parsed = raw ? JSON.parse(raw) : null;
+    if(parsed && typeof parsed === "object" && !Array.isArray(parsed)) return parsed;
+   }catch(_err){}
+  return { byLesson:{} };
+ }
+ 
+function saveLessonActivityStore(store){
+  try{ localStorage.setItem(LESSON_ACTIVITY_KEY, JSON.stringify(store)); }catch(_err){}
+}
+ 
+function markLessonActivity(lessonId, patch){
+  if(!lessonId || !patch || typeof patch !== "object") return;
+  const store = getLessonActivityStore();
+  if(!store.byLesson || typeof store.byLesson !== "object") store.byLesson = {};
+  const current = store.byLesson[lessonId] && typeof store.byLesson[lessonId] === "object" ? store.byLesson[lessonId] : {};
+  store.byLesson[lessonId] = { ...current, ...patch, updatedAt:Date.now() };
+  saveLessonActivityStore(store);
+}
+ 
+function normalizePct(value){
+  return Number.isFinite(value) ? Math.max(0, Math.min(100, Math.round(value))) : null;
+ }
+ 
+function buildBreakdownPart(part, config){
+  if(part == null) return null;
+  const source = typeof part === "object" ? part : {};
+  const firstKey = config.keys[0];
+  const secondKey = config.keys[1];
+  const first = Number(source[firstKey]);
+  const second = Number(source[secondKey]);
+  const hasCounts = Number.isFinite(first) && Number.isFinite(second);
+  const legacyEarned = Number(source.earned);
+  const legacyMax = Number(source.max);
+  const legacyCorrect = Number(source.correct);
+  const legacyTotal = Number(source.total);
+  const pctRaw = Number(source.pct);
+ 
+  let normalized = null;
+  if(hasCounts){
+    normalized = {
+      [firstKey]: first,
+      [secondKey]: second,
+      pct: second > 0 ? normalizePct((first / second) * 100) : null
+     };
+  }else if(Number.isFinite(legacyEarned) && Number.isFinite(legacyMax)){
+    normalized = {
+      [firstKey]: legacyEarned,
+      [secondKey]: legacyMax,
+      pct: legacyMax > 0 ? normalizePct((legacyEarned / legacyMax) * 100) : null
+    };
+  }else if(Number.isFinite(legacyCorrect) && Number.isFinite(legacyTotal)){
+    normalized = {
+      [firstKey]: legacyCorrect,
+      [secondKey]: legacyTotal,
+      pct: legacyTotal > 0 ? normalizePct((legacyCorrect / legacyTotal) * 100) : null
+    };
+  }else if(Number.isFinite(pctRaw)){
+    normalized = { [firstKey]: 0, [secondKey]: 0, pct:normalizePct(pctRaw) };
+   }
+ 
+  if(!normalized) return null;
+  normalized.pct = normalizePct(normalized.pct);
+  return normalized;
+}
+ 
+function normalizeLessonBreakdown(rawBreakdown){
+  const source = rawBreakdown && typeof rawBreakdown === "object" ? rawBreakdown : {};
+  return {
+    context: buildBreakdownPart(source.context || source.quickCheck, { keys:["correct", "total"] }),
+    argIdentify: buildBreakdownPart(source.argIdentify, { keys:["correct", "total"] }),
+    evidenceSupport: buildBreakdownPart(source.evidenceSupport || source.supportEvidence, { keys:["earned", "max"] }),
+    evidenceChallenge: buildBreakdownPart(source.evidenceChallenge || source.challengeEvidence, { keys:["earned", "max"] }),
+    judgement: buildBreakdownPart(source.judgement, { keys:["earned", "max"] })
+  };
+ }
+ 
+function normalizeLessonProgressEntry(entry){
+  if(!entry || typeof entry !== "object") return null;
+  return {
+    ...entry,
+    completion: entry.completion === true || entry.completed === true,
+    completed: entry.completion === true || entry.completed === true,
+    lastAttemptDate: typeof entry.lastAttemptDate === "string" ? entry.lastAttemptDate : null,
+    breakdown: normalizeLessonBreakdown(entry.breakdown)
+  };
+ }
+ 
+function getLessonProgress(lessonId){
+  if(!lessonId) return null;
+   const store = getLessonActivityStore();
+  const entry = store.byLesson?.[lessonId];
+  return normalizeLessonProgressEntry(entry);
+}
+ 
+function readDrillHistory(){
+  try{
+    const raw = localStorage.getItem(DRILL_HISTORY_KEY);
+    if(!raw) return {};
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === "object" ? parsed : {};
+  }catch(_err){
+    return {};
+  }
+}
+ 
+function saveDrillHistory(history){
+  try{ localStorage.setItem(DRILL_HISTORY_KEY, JSON.stringify(history)); }catch(_err){}
+ }
+ 
+function getDrillHistoryEntry(scopeKey){
+  if(!scopeKey) return null;
+  const history = readDrillHistory();
+  const entry = history[scopeKey];
+  return entry && typeof entry === "object" ? entry : null;
+}
+ 
+function storeDrillHistory(scopeKey, payload){
+  if(!scopeKey || !payload || typeof payload !== "object") return;
+  const history = readDrillHistory();
+  const current = history[scopeKey] && typeof history[scopeKey] === "object" ? history[scopeKey] : {};
+  const priorBest = Number.isFinite(current.bestDrillScore) ? Number(current.bestDrillScore) : null;
+  const incomingScore = Number.isFinite(payload.lastDrillScore) ? Number(payload.lastDrillScore) : null;
+  const bestDrillScore = incomingScore == null
+    ? priorBest
+    : (priorBest == null ? incomingScore : Math.max(priorBest, incomingScore));
+ 
+  history[scopeKey] = {
+    ...current,
+    ...payload,
+    bestDrillScore
+  };
+  saveDrillHistory(history);
+}
+ 
+function blendLessonAndDrillPct(lessonAvgPct, drillPct){
+  if(!Number.isFinite(lessonAvgPct) && !Number.isFinite(drillPct)) return null;
+  if(!Number.isFinite(lessonAvgPct)) return Math.round(drillPct);
+  if(!Number.isFinite(drillPct)) return Math.round(lessonAvgPct);
+  return Math.round((lessonAvgPct * 0.8) + (drillPct * 0.2));
+}
+ 
+function roundToFiveScale(percent){
+  if(!Number.isFinite(percent)) return null;
+  const clamped = Math.max(0, Math.min(100, Number(percent)));
+  return Math.round((clamped / 100) * 5);
+}
+ 
+function getLessonScopeByLessonId(lessonId){
+  if(!lessonId) return { topicId:null, themeId:null };
+  for(const topic of lessonsData){
+    const themes = Array.isArray(topic?.themes) ? topic.themes : [];
+    for(const theme of themes){
+      const lessons = Array.isArray(theme?.lessons) ? theme.lessons : [];
+      if(lessons.some(lesson=>lesson.id===lessonId)){
+        return { topicId:topic.id, themeId:theme.id };
+      }
+    }
+  }
+  return { topicId:null, themeId:null };
+}
+ 
+ 
+function markLessonResult(lessonId, scorePct, breakdown, options={}){
+  if(!lessonId) return;
+  const store = getLessonActivityStore();
+  if(!store.byLesson || typeof store.byLesson !== "object") store.byLesson = {};
+  const current = normalizeLessonProgressEntry(store.byLesson[lessonId]) || {};
+  const completedFromTasks = options?.completed === true;
+  const completionState = current.completed === true || completedFromTasks;
+  const priorBest = Number.isFinite(current.bestScorePct) ? current.bestScorePct : null;
+  const nextBest = Number.isFinite(scorePct) ? (priorBest===null ? scorePct : Math.max(priorBest, scorePct)) : priorBest;
+  const todayIso = new Date().toISOString();
+  store.byLesson[lessonId] = {
+    ...current,
+    completion:completionState,
+    completed:completionState,
+    tasksCompleted:Number.isFinite(options?.tasksCompleted) ? Number(options.tasksCompleted) : current.tasksCompleted,
+    tasksTotal:Number.isFinite(options?.tasksTotal) ? Number(options.tasksTotal) : current.tasksTotal,
+    lastAttemptDate:todayIso,
+    lastScorePct:Number.isFinite(scorePct) ? scorePct : null,
+    bestScorePct:nextBest,
+    breakdown:normalizeLessonBreakdown(breakdown),
+    updatedAt:Date.now()
+   };
+  saveLessonActivityStore(store);
+  const scope = getLessonScopeByLessonId(lessonId);
+  if(scope?.topicId) recordDailyLesson(scope.topicId);
+ }
+ 
+function getTopicLessons(topic){
+  if(!topic || !Array.isArray(topic.themes)) return [];
+  const lessons = topic.themes.flatMap(theme=>Array.isArray(theme.lessons) ? theme.lessons : []);
+  if(topic.id !== "t4") return lessons;
+ 
+  const parseYearRange = (label="")=>{
+    const years = String(label).match(/\d{4}/g) || [];
+    if(!years.length) return { start:Number.POSITIVE_INFINITY, end:Number.POSITIVE_INFINITY };
+    const start = Number(years[0]);
+    const end = Number(years[years.length - 1]);
+    return {
+      start:Number.isFinite(start) ? start : Number.POSITIVE_INFINITY,
+      end:Number.isFinite(end) ? end : Number.POSITIVE_INFINITY
+    };
+  };
+
+  return lessons
+    .map((lesson, index)=>({ lesson, index, range:parseYearRange(lesson?.yearLabel) }))
+    .sort((a,b)=>{
+      if(a.range.start !== b.range.start) return a.range.start - b.range.start;
+      if(a.range.end !== b.range.end) return a.range.end - b.range.end;
+      return a.index - b.index;
+    })
+    .map(item=>item.lesson);
+}
+ 
+function isLessonTaskSlide(slide){
+  const type = String(slide?.type || "");
+  return ["quick-check", "arg-identify", "evidence-select", "judgement", "strongest-evidence", "rank-factors", "build-answer"].includes(type);
+}
+ 
+function isLessonTaskCompleted(lessonId, slide){
+  const type = String(slide?.type || "");
+  const slideId = slide?.slideId;
+  if(!lessonId || !slideId) return false;
+  if(type === "quick-check") return getStoredQuickCheckAnswer(lessonId, slideId) !== null;
+  if(type === "arg-identify") return getStoredArgIdentifyState(lessonId, slideId).checked;
+  if(type === "evidence-select") return getStoredEvidenceSelectState(lessonId, slideId).checked;
+  if(type === "judgement"){
+    const state = getStoredJudgementState(lessonId, slideId);
+    return state.optionChecked && state.evidenceChecked;
+  }
+  if(type === "strongest-evidence") return getStoredStrongestEvidenceState(lessonId, slideId).checked;
+  if(type === "rank-factors") return getStoredRankFactorsState(lessonId, slideId).checked;
+  if(type === "build-answer") return getStoredBuildAnswerChecked(lessonId, slideId);
+  return true;
+ }
+ 
+const RECOMMENDED_THEME_ORDER = [
+  "political-authority",
+  "economic-development",
+  "opposition-control",
+  "social-cultural"
+];
+
+function parseAttemptMs(entry){
+  if(!entry || typeof entry !== "object") return null;
+  if(Number.isFinite(entry.lastStartedAt)) return entry.lastStartedAt;
+  if(typeof entry.lastAttemptDate === "string"){
+    const parsed = Date.parse(entry.lastAttemptDate);
+    if(Number.isFinite(parsed)) return parsed;
+   }
+  return null;
+ }
+ 
+function isLessonDue(entry, now=Date.now()){
+  if(!entry || typeof entry !== "object") return false;
+  if(entry.dueForReview === true) return true;
+  const attemptMs = typeof entry.lastAttemptDate === "string" ? Date.parse(entry.lastAttemptDate) : parseAttemptMs(entry);
+  const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+  const staleAttempt = Number.isFinite(attemptMs) && (now - attemptMs) > sevenDaysMs;
+  const lowScore = Number.isFinite(entry.lastScorePct) && entry.lastScorePct < 65;
+  return staleAttempt || lowScore;
+ }
+ 
+
+function getLessonStatus(entry){
+  if(!entry || typeof entry !== "object") return "Not started";
+  const hasAttemptDate = typeof entry.lastAttemptDate === "string";
+  if(!hasAttemptDate) return "Not started";
+  if(isLessonDue(entry)) return "Due";
+  if(entry.completion === true || entry.completed === true) return "Completed";
+  return "In progress";
+ }
+ 
+function getLessonCta(status){
+  if(status === "In progress") return "Continue";
+  if(status === "Completed") return "Review";
+  if(status === "Due") return "Review now";
+  return "Start";
+ }
+ 
+function formatLessonDate(dateIso){
+  if(typeof dateIso !== "string") return null;
+  const parsed = new Date(dateIso);
+  if(Number.isNaN(parsed.getTime())) return null;
+  return parsed.toLocaleDateString("en-GB", { year:"numeric", month:"short", day:"numeric" });
+ }
+ 
+function getRecommendedNext(topicId){
+  const topic = lessonsData.find(t=>t.id===topicId);
+  if(!topic) return null;
+ 
+  const byLesson = getLessonActivityStore().byLesson || {};
+  const themeMap = new Map((Array.isArray(topic.themes) ? topic.themes : []).map(theme=>[theme.id, theme]));
+  const orderedThemes = [
+    ...RECOMMENDED_THEME_ORDER.map(id=>themeMap.get(id)).filter(Boolean),
+    ...Array.from(themeMap.values()).filter(theme=>!RECOMMENDED_THEME_ORDER.includes(theme.id))
+  ];
+  const topicDrill = getDrillHistoryEntry(`topic:${topicId}`);
+  const lastDrillScore = Number.isFinite(topicDrill?.lastDrillScore) ? Number(topicDrill.lastDrillScore) : null;
+ 
+  const getWeakDrillReason = ()=>{
+    if(!topicDrill?.breakdown || typeof topicDrill.breakdown !== "object") return null;
+    const candidates = [
+      { key:"argIdentify", label:"Argument identification" },
+      { key:"evidenceSelect", label:"Evidence selection" },
+      { key:"judgement", label:"Judgement" }
+    ].map(item=>{
+      const pct = Number(topicDrill.breakdown?.[item.key]?.pct);
+      return { ...item, pct:Number.isFinite(pct) ? pct : null };
+    }).filter(item=>item.pct !== null).sort((a,b)=>a.pct-b.pct);
+    if(!candidates.length) return null;
+    const weakest = candidates[0];
+    return `Your drill suggests ${weakest.label} is still weak (${weakest.pct}%).`;
+  };
+
+  if(lastDrillScore !== null && lastDrillScore < 3){
+    let weakTheme = null;
+    for(const metric of [
+      { key:"interpretationPct", label:"Interpretation mastery" },
+      { key:"judgementPct", label:"Judgement mastery" },
+      { key:"contextPct", label:"Context mastery" }
+    ]){
+      const candidates = orderedThemes
+        .map(theme=>({ theme, mastery:computeThemeMastery(topicId, theme.id) }))
+        .filter(({ theme })=>Array.isArray(theme.lessons) && theme.lessons.length);
+      if(!candidates.length) continue;
+      const ranked = candidates.sort((a,b)=>{
+        const av = Number.isFinite(a.mastery?.[metric.key]) ? a.mastery[metric.key] : 101;
+        const bv = Number.isFinite(b.mastery?.[metric.key]) ? b.mastery[metric.key] : 101;
+        if(av !== bv) return av - bv;
+        return orderedThemes.findIndex(t=>t.id===a.theme.id) - orderedThemes.findIndex(t=>t.id===b.theme.id);
+      });
+      if(ranked.length){
+        weakTheme = ranked[0].theme;
+        break;
+      }
+    }
+
+    if(weakTheme){
+      const fallbackLesson = (weakTheme.lessons || []).map(lesson=>{
+        const entry = normalizeLessonProgressEntry(byLesson[lesson.id]) || {};
+        const score = Number.isFinite(entry.lastScorePct) ? entry.lastScorePct : 0;
+        return { lesson, score };
+      }).sort((a,b)=>a.score - b.score)[0];
+      if(fallbackLesson){
+        return {
+          type:"theme",
+          topicId,
+          themeId:weakTheme.id,
+          lessonId:fallbackLesson.lesson.id,
+          title:fallbackLesson.lesson.title,
+          reason:getWeakDrillReason() || `Recent drill score was ${lastDrillScore}/5, so targeted practice is recommended.`
+        };
+      }
+    }
+   }
+ 
+  for(const theme of orderedThemes){
+    const lessons = Array.isArray(theme.lessons) ? theme.lessons : [];
+    for(const lesson of lessons){
+      const entry = normalizeLessonProgressEntry(byLesson[lesson.id]) || null;
+      if(isLessonDue(entry)){
+        return {
+          type:"lesson",
+          topicId,
+          themeId:theme.id,
+          lessonId:lesson.id,
+          title:lesson.title,
+          reason:"This lesson is due for review."
+        };
+      }
+    }
+  }
+ 
+  for(const theme of orderedThemes){
+    const lessons = Array.isArray(theme.lessons) ? theme.lessons : [];
+    if(!lessons.length) continue;
+    const unfinished = lessons.find(lesson=>{
+      const entry = normalizeLessonProgressEntry(byLesson[lesson.id]);
+      return !entry || entry.completed !== true;
+    });
+    if(unfinished){
+      return {
+        type:"lesson",
+        topicId,
+        themeId:theme.id,
+        lessonId:unfinished.id,
+        title:unfinished.title,
+        reason:`This is the next unfinished lesson in ${theme.title}.`
+      };
+    }
+  }
+
+  const allLessons = getTopicLessons(topic);
+  if(!allLessons.length) return null;
+
+  const masteryPriority = [
+    { key:"interpretationPct", label:"Interpretation mastery" },
+    { key:"judgementPct", label:"Judgement mastery" },
+    { key:"contextPct", label:"Context mastery" }
+  ];
+
+  let selectedTheme = null;
+  let selectedMetric = masteryPriority[0];
+  for(const metric of masteryPriority){
+    const candidates = orderedThemes
+      .map(theme=>({ theme, mastery:computeThemeMastery(topicId, theme.id) }))
+      .filter(({ theme })=>Array.isArray(theme.lessons) && theme.lessons.length);
+    if(!candidates.length) continue;
+    const withScores = candidates.filter(item=>Number.isFinite(item.mastery?.[metric.key]));
+    const ranked = (withScores.length ? withScores : candidates)
+      .sort((a,b)=>{
+        const av = Number.isFinite(a.mastery?.[metric.key]) ? a.mastery[metric.key] : 101;
+        const bv = Number.isFinite(b.mastery?.[metric.key]) ? b.mastery[metric.key] : 101;
+        if(av !== bv) return av - bv;
+        return orderedThemes.findIndex(t=>t.id===a.theme.id) - orderedThemes.findIndex(t=>t.id===b.theme.id);
+      });
+    if(ranked.length){
+      selectedTheme = ranked[0].theme;
+      selectedMetric = metric;
+      break;
+    }
+   }
+ 
+  if(!selectedTheme) selectedTheme = orderedThemes.find(theme=>Array.isArray(theme.lessons) && theme.lessons.length) || null;
+  if(!selectedTheme) return null;
+ 
+  const fallbackLesson = (selectedTheme.lessons || []).map(lesson=>{
+    const entry = normalizeLessonProgressEntry(byLesson[lesson.id]) || {};
+    const score = Number.isFinite(entry.lastScorePct) ? entry.lastScorePct : 0;
+    return { lesson, score };
+  }).sort((a,b)=>a.score - b.score)[0];
+ 
+  if(!fallbackLesson) return null;
+  const selectedMastery = computeThemeMastery(topicId, selectedTheme.id);
+  const masteryPct = Number.isFinite(selectedMastery?.[selectedMetric.key]) ? selectedMastery[selectedMetric.key] : null;
+  const forwardReason = lastDrillScore !== null && lastDrillScore >= 4
+    ? `Your recent drill score was strong (${lastDrillScore}/5), so move forward in the pathway.`
+    : null;
+ 
+   return {
+    type:"theme",
+    topicId,
+    themeId:selectedTheme.id,
+    lessonId:fallbackLesson.lesson.id,
+    title:fallbackLesson.lesson.title,
+    reason:forwardReason || (masteryPct == null
+      ? `Your ${selectedMetric.label} is weakest in this theme.`
+      : `Your ${selectedMetric.label} is lowest here (${masteryPct}%).`)
+   };
+ }
+ 
+function launchLessonFromTopic(topic, lessonId, preferResume=true){
+  if(!topic || !lessonId) return false;
+  const topicThemes = Array.isArray(topic.themes) ? topic.themes : [];
+  const matchedTheme = topicThemes.find(theme=>Array.isArray(theme.lessons) && theme.lessons.some(lesson=>lesson.id===lessonId));
+  if(!matchedTheme) return false;
+  lessonsNav.topicId = topic.id;
+  return openLesson(lessonId, matchedTheme.id);
+ }
+ 
+function openRecommendedLessonForTopic(topicId){
+  const topic = lessonsData.find(t=>t.id===topicId);
+  if(!topic || !isTopicEnabled(topic.id)) return false;
+  const recommended = getRecommendedNext(topic.id);
+  if(recommended?.lessonId) return launchLessonFromTopic(topic, recommended.lessonId);
+  const fallbackLesson = getTopicLessons(topic)[0] || null;
+  if(!fallbackLesson) return false;
+  return launchLessonFromTopic(topic, fallbackLesson.id);
+ }
+ 
+function openLesson(lessonId, themeIdOverride=null){
+  if(!lessonId) return false;
+  const themeId = themeIdOverride || lessonsNav.themeId;
+  if(!themeId) return false;
+  lessonsNav.themeId = themeId;
+  lessonsNav.lessonId = lessonId;
+  lessonsNav.selectedOptionIndex = null;
+  lessonsNav.view = "player";
+  renderLessons();
+  return true;
+ }
+ 
+function hashSeed(str){
+  let h = 2166136261;
+  const text = String(str || "seed");
+  for(let i=0;i<text.length;i++){
+    h ^= text.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+   }
+  return h >>> 0;
+ }
+ 
+function mulberry32(seed){
+  let t = seed >>> 0;
+  return function(){
+    t += 0x6D2B79F5;
+    let x = t;
+    x = Math.imul(x ^ (x >>> 15), x | 1);
+    x ^= x + Math.imul(x ^ (x >>> 7), x | 61);
+    return ((x ^ (x >>> 14)) >>> 0) / 4294967296;
+  };
+ }
+ 
+function stableShuffle(list, seedStr){
+  const seed = hashSeed(seedStr);
+  const rand = mulberry32(seed);
+  const arr = (Array.isArray(list) ? list : []).map((v,i)=>({ v, i }));
+  for(let i=arr.length-1;i>0;i--){
+    const j = Math.floor(rand() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr.map(x=>x.v);
+ }
+ 
+function getOrCreateShuffleOrder(key, length, seedStr){
+  if(!Number.isInteger(length) || length <= 1) return [...Array(Math.max(length || 0, 0)).keys()];
+  try{
+    const stored = JSON.parse(localStorage.getItem(key) || "null");
+    if(stored && Array.isArray(stored) && stored.length===length) return stored;
+  }catch(_err){}
+  const order = stableShuffle([...Array(length).keys()], seedStr);
+  try{ localStorage.setItem(key, JSON.stringify(order)); }catch(_err){}
+  return order;
+ }
+ 
+function balanceOptionLengths(options, seedKey){
+  if(!Array.isArray(options) || options.length < 2) return Array.isArray(options) ? [...options] : [];
+  const lengths = options.map(opt=>String(opt || "").trim().length);
+  const maxLen = Math.max(...lengths, 0);
+  if(maxLen < 60) return [...options];
+ 
+  const minTarget = Math.floor(maxLen * 0.78);
+  const fillers = [
+    " in this context.",
+    " in this period.",
+    " at least in the short term.",
+    " for most people at the time.",
+    " in the immediate situation."
+   ];
+ 
+  return options.map((rawText, idx)=>{
+    let text = String(rawText || "").trim();
+    if(!text) return text;
+    let guard = 0;
+    while(text.length < minTarget && guard < 4){
+      const fillerIdx = hashSeed(`${seedKey}:${idx}:${guard}`) % fillers.length;
+      const suffix = fillers[fillerIdx];
+      if(text.endsWith(".")) text = text.slice(0, -1);
+      text = `${text},${suffix}`.replace(/,\s+/g, " ").replace(/\s+/g, " ").trim();
+      guard += 1;
+     }
+    return text;
+   });
+}
+ 
+function getShuffledSlideData(lesson, slide, slideIndex=0){
+  if(!slide || !lesson) return { ...slide };
+  const slideId = slide?.slideId || slideIndex;
+  const slideKey = `${lesson.id}::${slideId}::${slide.type}`;
+ 
+  if(slide.type === "quick-check" || slide.type === "arg-identify"){
+    const options = Array.isArray(slide.options) ? slide.options : [];
+    const order = getOrCreateShuffleOrder(`LS_SHUF_${slideKey}_opts`, options.length, slideKey);
+    const shuffledOptions = balanceOptionLengths(order.map(idx=>options[idx]), `${slideKey}::opts`);
+    const remappedFeedback = Array.isArray(slide.feedback) ? order.map(idx=>slide.feedback[idx]) : slide.feedback;
+    const remappedCorrectIndex = order.indexOf(slide.correctIndex);
+    return {
+      ...slide,
+      options:shuffledOptions,
+      feedback:remappedFeedback,
+      correctIndex:Number.isInteger(remappedCorrectIndex) && remappedCorrectIndex >= 0 ? remappedCorrectIndex : slide.correctIndex,
+      optionIndexMap:order,
+      originalCorrectIndex:slide.correctIndex
+    };
+   }
+ 
+  if(slide.type === "evidence-select"){
+    const statements = Array.isArray(slide.statements) ? slide.statements : [];
+    const order = getOrCreateShuffleOrder(`LS_SHUF_${slideKey}_stmts`, statements.length, slideKey);
+    return { ...slide, statements:order.map(idx=>statements[idx]) };
+   }
+ 
+  if(slide.type === "strongest-evidence"){
+    const statements = Array.isArray(slide.statements) ? slide.statements : [];
+    const order = getOrCreateShuffleOrder(`LS_SHUF_${slideKey}_stmts`, statements.length, slideKey);
+    const shuffled = order.map(idx=>statements[idx]);
+    return { ...slide, statements:shuffled, correctId:slide.correctId };
+   }
+ 
+  if(slide.type === "rank-factors"){
+    const items = Array.isArray(slide.items) ? slide.items : [];
+    const order = getOrCreateShuffleOrder(`LS_SHUF_${slideKey}_items`, items.length, slideKey);
+    return { ...slide, items:order.map(idx=>items[idx]) };
+  }
+ 
+  if(slide.type === "judgement"){
+    const options = Array.isArray(slide.options) ? slide.options : [];
+    const optionOrder = getOrCreateShuffleOrder(`LS_SHUF_${slideKey}_opts`, options.length, `${slideKey}::opts`);
+    const evidenceStatements = Array.isArray(slide.evidencePick?.statements) ? slide.evidencePick.statements : [];
+    const evidenceOrder = getOrCreateShuffleOrder(`LS_SHUF_${slideKey}_stmts`, evidenceStatements.length, `${slideKey}::stmts`);
+    const remappedBestIndex = optionOrder.indexOf(slide.bestIndex);
+    return {
+      ...slide,
+      options:balanceOptionLengths(optionOrder.map(idx=>options[idx]), `${slideKey}::judgement`),
+      bestIndex:Number.isInteger(remappedBestIndex) && remappedBestIndex >= 0 ? remappedBestIndex : slide.bestIndex,
+      evidencePick:{
+        ...(slide.evidencePick || {}),
+        statements:evidenceOrder.map(idx=>evidenceStatements[idx])
+      }
+    };
+  }
+  return { ...slide };
+ }
+ 
+function persistLessonSlidePosition(lessonId, slideIdx){
+  if(!lessonId) return;
+  const safeIdx = Number.isFinite(slideIdx) ? Math.max(0, slideIdx) : 0;
+  markLessonActivity(lessonId, { lastSlideIdx:safeIdx });
+}
+ 
+function getTopicProgress(topic){
+  const topicLessons = getTopicLessons(topic);
+  const totalCount = topicLessons.length;
+  const lessonIds = new Set(topicLessons.map(lesson=>lesson.id));
+  const store = getLessonActivityStore();
+  const byLesson = store.byLesson && typeof store.byLesson === "object" ? store.byLesson : {};
+  let completedCount = 0;
+  let bestScore = null;
+  let dueCount = 0;
+  let lastLesson = null;
+
+  Object.entries(byLesson).forEach(([lessonId, rawEntry])=>{
+    const entry = normalizeLessonProgressEntry(rawEntry);
+    if(!lessonIds.has(lessonId) || !entry) return;
+    if(entry.completed === true) completedCount += 1;
+    if(Number.isFinite(entry.bestScorePct)){
+      bestScore = bestScore === null ? entry.bestScorePct : Math.max(bestScore, entry.bestScorePct);
+    }
+    if(isLessonDue(entry)) dueCount += 1;
+    if(Number.isFinite(entry.lastStartedAt)){
+      if(!lastLesson || entry.lastStartedAt > Number(lastLesson.lastStartedAt || 0)){
+        lastLesson = { lessonId, lastStartedAt:entry.lastStartedAt };
+       }
+     }
+   });
+ 
+  return { completedCount, totalCount, bestScore, dueCount, lastLessonId:lastLesson?.lessonId || null };
+ }
+ 
+ 
+function computeThemeMastery(topicId, themeId){
+  const topic = lessonsData.find(t=>t.id===topicId);
+  const theme = topic?.themes?.find(th=>th.id===themeId);
+  const lessons = Array.isArray(theme?.lessons) ? theme.lessons : [];
+  const totalLessons = lessons.length;
+  const contextValues = [];
+  const interpretationValues = [];
+  const judgementValues = [];
+  let lessonsWithData = 0;
+ 
+  lessons.forEach(lesson=>{
+    const progress = getLessonProgress(lesson.id);
+    if(!progress) return;
+    const breakdown = progress.breakdown || {};
+    const contextPct = Number.isFinite(breakdown.context?.pct) ? breakdown.context.pct : null;
+    const argPct = Number.isFinite(breakdown.argIdentify?.pct) ? breakdown.argIdentify.pct : null;
+    const supportPct = Number.isFinite(breakdown.evidenceSupport?.pct) ? breakdown.evidenceSupport.pct : null;
+    const challengePct = Number.isFinite(breakdown.evidenceChallenge?.pct) ? breakdown.evidenceChallenge.pct : null;
+    const judgementPct = Number.isFinite(breakdown.judgement?.pct) ? breakdown.judgement.pct : null;
+ 
+    if(contextPct !== null) contextValues.push(contextPct);
+    const interpretationParts = [argPct, supportPct, challengePct].filter(v=>Number.isFinite(v));
+    if(interpretationParts.length){
+      const avg = interpretationParts.reduce((sum, v)=>sum + v, 0) / interpretationParts.length;
+      interpretationValues.push(avg);
+    }
+    if(judgementPct !== null) judgementValues.push(judgementPct);
+ 
+    if(contextPct !== null || interpretationParts.length || judgementPct !== null) lessonsWithData += 1;
+  });
+ 
+  const avgOrNull = (arr)=>arr.length ? Math.round(arr.reduce((sum,v)=>sum+v,0)/arr.length) : null;
+
+  const lessonContextPct = avgOrNull(contextValues);
+  const lessonInterpretationPct = avgOrNull(interpretationValues);
+  const lessonJudgementPct = avgOrNull(judgementValues);
+  const themeDrill = getDrillHistoryEntry(`theme:${topicId}:${themeId}`);
+  const topicDrill = getDrillHistoryEntry(`topic:${topicId}`);
+  const drillSource = themeDrill || topicDrill || {};
+  const drillArgPct = Number(drillSource?.breakdown?.argIdentify?.pct);
+  const drillEvidencePct = Number(drillSource?.breakdown?.evidenceSelect?.pct);
+  const interpretationDrillParts = [drillArgPct, drillEvidencePct].filter(Number.isFinite);
+  const drillInterpretationPct = interpretationDrillParts.length
+    ? Math.round(interpretationDrillParts.reduce((sum,v)=>sum+v,0) / interpretationDrillParts.length)
+    : null;
+  const drillJudgementPct = Number.isFinite(Number(drillSource?.breakdown?.judgement?.pct))
+    ? Number(drillSource.breakdown.judgement.pct)
+    : null;
+ 
+   return {
+    contextPct: lessonContextPct,
+    interpretationPct: blendLessonAndDrillPct(lessonInterpretationPct, drillInterpretationPct),
+    judgementPct: blendLessonAndDrillPct(lessonJudgementPct, drillJudgementPct),
+    lessonsWithData,
+    totalLessons
+   };
+ }
+ 
+function getThemeProgress(topic, theme){
+  const themeLessons = Array.isArray(theme?.lessons) ? theme.lessons : [];
+  const totalLessons = themeLessons.length;
+  const lessonIds = new Set(themeLessons.map(lesson=>lesson.id));
+  const store = getLessonActivityStore();
+  const byLesson = store.byLesson && typeof store.byLesson === "object" ? store.byLesson : {};
+  const sevenDaysMs = 7 * 24 * 60 * 60 * 1000;
+  const now = Date.now();
+  let completedLessons = 0;
+  let attemptedLessons = 0;
+  let dueLessons = 0;
+ 
+  Object.entries(byLesson).forEach(([lessonId, rawEntry])=>{
+    const entry = normalizeLessonProgressEntry(rawEntry);
+    if(!lessonIds.has(lessonId) || !entry) return;
+    const hasAttempt = Number.isFinite(entry.lastStartedAt) || Number.isFinite(entry.bestScorePct) || entry.completed === true;
+    if(!hasAttempt) return;
+    attemptedLessons += 1;
+    if(entry.completed === true) completedLessons += 1;
+ 
+    const staleAttempt = Number.isFinite(entry.lastStartedAt) && (now - entry.lastStartedAt) > sevenDaysMs;
+    const lowScore = Number.isFinite(entry.bestScorePct) && entry.bestScorePct < 65;
+    if(entry.dueForReview === true || staleAttempt || lowScore) dueLessons += 1;
+  });
+ 
+  return { totalLessons, completedLessons, attemptedLessons, dueLessons };
+ }
+ 
+function getThemeStatus(progress, mastery){
+  if(progress.dueLessons > 0) return { label:"Due for review", cta:"Review now" };
+  if(progress.totalLessons > 0 && progress.completedLessons === progress.totalLessons){
+    const interpretationLow = Number.isFinite(mastery?.interpretationPct) && mastery.interpretationPct < 65;
+    const judgementLow = Number.isFinite(mastery?.judgementPct) && mastery.judgementPct < 65;
+    if(interpretationLow || judgementLow) return { label:"Completed", cta:"Improve exam skills" };
+    return { label:"Completed", cta:"Review" };
+  }
+  const hasContext = Number.isFinite(mastery?.contextPct);
+  const interpretationMissing = mastery?.interpretationPct == null;
+  if(hasContext && interpretationMissing) return { label:"In progress", cta:"Try Exam+" };
+  if(progress.attemptedLessons > 0) return { label:"In progress", cta:"Continue" };
+  return { label:"Not started", cta:"Start" };
+ }
+ 
+function ensureSlideMeta(slide, index){
+  const nextSlide = { ...slide };
+  if(!nextSlide.slideId) nextSlide.slideId = `slide-${index+1}`;
+  return nextSlide;
+ }
+ 
+function getDefaultModesForSlide(slide, interpretationOrder){
+  if(slide.type === "results") return ["overview", "simple", "exam"];
+  if(slide.type === "idea" || slide.type === "briefing" || slide.type === "lesson-context" || slide.type === "skill-focus" || slide.type === "quick-check" || slide.type === "next-steps" || slide.type === "rank-factors" || slide.type === "strongest-evidence" || slide.type === "exam-transfer") return ["overview", "simple", "exam"];
+  if(slide.type === "interpretation") return interpretationOrder === 1 ? ["simple", "exam"] : ["exam"];
+  if(slide.type === "arg-identify") return ["simple", "exam"];
+  if(slide.type === "evidence-select") return slide.purpose === "challenge" ? ["exam"] : ["simple", "exam"];
+  if(slide.type === "judgement") return ["exam"];
+  return ["exam"];
+}
+ 
+function getLessonInteractionPlan(lessonId){
+  const planCode = hashSeed(String(lessonId || "")) % 2;
+  return ["A", "B"][planCode] || "A";
+}
+ 
+function getLessonThemeId(lessonId){
+  for(const topic of lessonsData || []){
+    for(const theme of topic?.themes || []){
+      const lesson = (theme.lessons || []).find(item=>item.id===lessonId);
+      if(lesson) return theme.id;
+    }
+  }
+  return "";
+ }
+ 
+function extractFactorLabel(text, fallback){
+  const raw = String(text || "").trim();
+  if(!raw) return fallback;
+ 
+  const parts = raw.split(":").map(part=>part.trim()).filter(Boolean);
+  const firstPart = parts[0] || "";
+  const latterParts = parts.slice(1).join(": ").trim();
+  const isGenericPrefix = /^micro-briefing\s*\d+$/i.test(firstPart) || /^factor\s*\d+$/i.test(firstPart);
+
+  if(isGenericPrefix && latterParts){
+    const concise = latterParts.split(/[–—-]/)[0].trim();
+    if(concise && concise.length >= 4 && concise.length <= 90) return concise;
+    if(latterParts.length >= 4 && latterParts.length <= 90) return latterParts;
+   }
+ 
+  const heading = firstPart;
+  if(heading && heading.length >= 4 && heading.length <= 90) return heading;
+  if(raw.length >= 4 && raw.length <= 90) return raw;
+  return fallback;
+ }
+ 
+function deriveSlideSubheading(content, fallback="Key focus"){
+  const raw = String(content || "").replace(/\s+/g, " ").trim();
+  if(!raw) return fallback;
+  const firstSentence = raw.split(/[.!?]/)[0].trim();
+  let concise = (firstSentence || raw).replace(/^\W+/, "").trim();
+  if(/^(after|before|during|in|by)\b/i.test(concise) && concise.includes(",")){
+    concise = concise.slice(concise.indexOf(",") + 1).trim();
+  }
+  concise = concise.replace(/[?!.]+$/, "").trim();
+  if(!concise) return fallback;
+  const clipped = concise.length > 64 ? `${concise.slice(0, 61).trimEnd()}…` : concise;
+  return `Focus: ${clipped}`;
+}
+ 
+function buildRankFactorsSlide(lesson, slideId, sourceLabel){
+  const pack = lesson?.contentPack || {};
+  const enquiry = (pack.hero?.subtitleLine || lesson?.title || "this lesson enquiry").trim();
+  const themeId = getLessonThemeId(lesson?.id);
+  const fallbackByTheme = {
+    "political-authority":["Leadership and legitimacy", "Reform and concession", "Repression capacity", "Institutions and governance", "War and crisis"],
+    "economic-development":["Industry and finance", "Agriculture and food supply", "Transport and logistics", "Living standards", "War impact"],
+    "opposition-control":["Opposition organisation", "State repression", "Splits and divisions", "Mass mobilisation", "Army loyalty"],
+    "social-cultural":["Urbanisation", "Literacy and ideas", "Class tension", "Rural continuity", "War acceleration"]
+  };
+  const briefingLabels = (pack.sf?.briefings || []).map((briefing, i)=>extractFactorLabel(briefing.heading, `Factor ${i+1}`));
+  const fallbackLabels = fallbackByTheme[themeId] || ["Leadership", "Institutions", "Economy", "Society", "War pressure"];
+  const combined = [...briefingLabels, ...fallbackLabels, extractFactorLabel(pack.bigPicture, "State capacity")];
+  const unique = [];
+  const seen = new Set();
+  combined.forEach(label=>{
+    const key = String(label || "").toLowerCase();
+    if(!key || seen.has(key)) return;
+    seen.add(key);
+    unique.push(label);
+  });
+  const labels = unique.slice(0, 5);
+  while(labels.length < 5){ labels.push(`Factor ${labels.length + 1}`); }
+  const weights = [5, 4, 3, 2, 1];
+  const items = labels.map((text, i)=>({
+    id:`${slideId}-factor-${i+1}`,
+    text,
+    weight:weights[i],
+    feedback:i < 3
+      ? `${text} is a strong factor because it directly helps answer: ${enquiry}`
+      : `${text} is relevant, but it is less decisive for: ${enquiry}`
+  }));
+  return {
+    slideId,
+    type:"rank-factors",
+    heading:sourceLabel,
+    prompt:`Rank the three most decisive factors for this question: ${enquiry}`,
+    items,
+    pickCount:3,
+    scoring:{ type:"weighted-top-3" }
+  };
+}
+ 
+function statementFromSource(statement, prefix=""){
+  if(!statement) return null;
+  return {
+    id:String(statement.id || `${prefix}${hashSeed(JSON.stringify(statement))}`),
+    text:String(statement.text || ""),
+    strength:Number(statement.score ?? statement.strength ?? 0),
+    feedback:String(statement.feedback || "This is true, but evaluate how directly it answers the claim.")
+  };
+ }
+ 
+function pickDirectBestStatement(statements){
+  const sorted = [...statements].sort((a,b)=>(b.strength - a.strength) || (b.text.length - a.text.length));
+  return sorted[0]?.id || statements[0]?.id || null;
+}
+ 
+function buildStrongestEvidenceFromQuickCheck(lesson, slideId, sourceLabel){
+  const pack = lesson?.contentPack || {};
+  const support = (pack.interpretations?.A?.evidenceSupport?.statements || []).slice().sort((a,b)=>(b.score||0)-(a.score||0)).slice(0,2).map(s=>statementFromSource(s, `${slideId}-a-s-`));
+  const challenge = (pack.interpretations?.A?.evidenceChallenge?.statements || []).slice().sort((a,b)=>(b.score||0)-(a.score||0)).slice(0,1).map(s=>statementFromSource(s, `${slideId}-a-c-`));
+  const judgement = (pack.judgement?.evidencePick?.statements || []).slice().sort((a,b)=>(b.score||0)-(a.score||0)).slice(0,1).map(s=>statementFromSource(s, `${slideId}-j-`));
+  const irrelevantPool = [...(pack.interpretations?.B?.evidenceChallenge?.statements || []), ...(pack.interpretations?.B?.evidenceSupport?.statements || [])]
+    .filter(s=>Number(s?.score || 0) <= 0)
+    .map(s=>statementFromSource(s, `${slideId}-irr-`));
+  const extraIrrelevant = irrelevantPool[0] || {
+    id:`${slideId}-irrelevant-fallback`,
+    text:"Industrial output figures from a different decade that are accurate but not directly tied to this claim.",
+    strength:0,
+    feedback:"Accurate detail, but it is too indirect to be the strongest evidence for this exact claim."
+  };
+  const statements = [...support, ...challenge, ...judgement, extraIrrelevant].filter(Boolean).slice(0,6);
+  const correctId = pickDirectBestStatement(statements);
+  return {
+    slideId,
+    type:"strongest-evidence",
+    heading:sourceLabel,
+    prompt:"Choose the MOST relevant evidence statement.",
+    contextLine:pack.bigPicture || pack.hero?.titleLine || "Evaluate the claim using the most direct evidence.",
+    statements,
+    correctId,
+    feedbackCorrect:"Strong choice: this evidence most directly supports the claim, not just a nearby point.",
+    feedbackWrong:"This may be true, but it is less direct. Prioritise evidence that most clearly proves the specific claim."
+  };
+}
+ 
+function buildStrongestEvidenceFromJudgement(lesson, slideId){
+  const pack = lesson?.contentPack || {};
+  const statements = (pack.judgement?.evidencePick?.statements || []).map((s,i)=>statementFromSource(s, `${slideId}-j-${i}-`)).filter(Boolean);
+  const correctId = pickDirectBestStatement(statements);
+  return {
+    slideId,
+    type:"strongest-evidence",
+    heading:"Judgement evidence focus",
+    prompt:"Which statement is the strongest evidence for your final judgement?",
+    contextLine:pack.judgement?.options?.[pack.judgement?.bestIndex] || "Best overall judgement",
+    statements,
+    correctId,
+    feedbackCorrect:"Yes—this is the most relevant evidence for justifying the best overall judgement.",
+    feedbackWrong:"This statement has value, but another option is more directly useful for defending the judgement."
+  };
+}
+
+function buildRankFactorsFromJudgement(lesson, slideId){
+  const pack = lesson?.contentPack || {};
+  const judgementItems = (pack.judgement?.evidencePick?.statements || []).map((s, i)=>({
+    id:String(s.id || `${slideId}-e-${i+1}`),
+    text:String(s.text || ""),
+    weight:Number(s.score || 0) + 1,
+    feedback:String(s.feedback || "Useful if it directly supports your judgement line.")
+  }));
+  const irrelevantSource = [
+    ...(pack.interpretations?.A?.evidenceChallenge?.statements || []),
+    ...(pack.interpretations?.B?.evidenceChallenge?.statements || []),
+    ...(pack.interpretations?.B?.evidenceSupport?.statements || [])
+  ].filter(item=>Number(item?.score || 0) <= 0).slice(0,2);
+  const extra = irrelevantSource.map((s, i)=>({
+    id:`${slideId}-irr-${i+1}`,
+    text:String(s.text || `True but less relevant detail ${i+1}`),
+    weight:0,
+    feedback:"This may be true but is weak for justifying the final judgement."
+  }));
+  const allItems = [...judgementItems, ...extra].slice(0, 7);
+  return {
+    slideId,
+    type:"rank-factors",
+    heading:"Judgement evidence ranking",
+    prompt:"Rank the top 3 MOST useful pieces of evidence for your judgement. Prioritise direct relevance in 1st place.",
+    items:allItems,
+    pickCount:3,
+    scoring:{ type:"weighted-top-3" }
+  };
+ }
+ 
+function getSlidesForMode(allSlides, mode){
+  return allSlides.filter(slide=>Array.isArray(slide.modes) && slide.modes.includes(mode));
+}
+ 
+function getSfBriefingsForSlides(pack){
+  const briefings = Array.isArray(pack?.sf?.briefings) ? pack.sf.briefings : [];
+  if(briefings.length <= 3) return briefings.map(item=>({ ...item }));
+ 
+  const mergedFirst = {
+    ...briefings[0],
+    heading:briefings[0]?.heading || "Micro-briefing 1",
+    text:`${String(briefings[0]?.text || "")}
+ 
+Also:
+${String(briefings[1]?.text || "")}`
+  };
+  const third = { ...briefings[2] };
+  const fourthPlus = { ...briefings[3] };
+  if(briefings.length > 4){
+    const extraText = briefings.slice(4).map(item=>String(item?.text || "")).filter(Boolean).join("\n\n");
+    fourthPlus.text = [String(fourthPlus.text || ""), extraText].filter(Boolean).join("\n\n");
+   }
+  return [mergedFirst, third, fourthPlus];
+ }
+ 
+function buildExamTransferModelAnswer(lesson){
+  const pack = lesson?.contentPack || {};
+  const enquiry = pack.hero?.subtitleLine || lesson?.title || "the enquiry";
+  const options = Array.isArray(pack.judgement?.options) ? pack.judgement.options : [];
+  const bestIndex = Number.isInteger(pack.judgement?.bestIndex) ? pack.judgement.bestIndex : 0;
+  const judgementText = String(options[bestIndex] || options[0] || "Overall, the evidence points to a mixed outcome.");
+  const scoredStatements = Array.isArray(pack.judgement?.evidencePick?.statements) ? pack.judgement.evidencePick.statements.slice() : [];
+  const topStatements = scoredStatements.slice().sort((a,b)=>(Number(b?.score) || 0) - (Number(a?.score) || 0));
+  const evidence = (topStatements.length ? topStatements : scoredStatements).slice(0,2).map(item=>String(item?.text || "")).filter(Boolean);
+  const supportText = evidence[0] || "key evidence supports this view";
+  const limitText = evidence[1] || String(pack.bigPicture || "change was uneven and had clear limits");
+  return `Overall, ${judgementText.charAt(0).toLowerCase()}${judgementText.slice(1)}. This is mainly because ${supportText.charAt(0).toLowerCase()}${supportText.slice(1)}. However, ${limitText.charAt(0).toLowerCase()}${limitText.slice(1)}.`;
+ }
+ 
+function buildSkillFocusSlide(lesson){
+  const lessonId = lesson?.id || "lesson";
+  const pack = lesson?.contentPack || {};
+  const enquiryText = `${lesson?.title || ""} ${pack?.hero?.subtitleLine || ""}`.toLowerCase();
+  const isHowFar = enquiryText.includes("how far");
+  const isWhy = !isHowFar && enquiryText.includes("why");
+  const questionSkill = isHowFar
+    ? "Decide how far you agree: what changed, what stayed the same, and how significant the change was."
+    : isWhy
+      ? "Explain why events happened by weighing short-term triggers against deeper causes."
+      : "Use secure knowledge to build and defend a clear exam judgement.";
+ 
+  const ao1Points = [
+    questionSkill,
+    "Use secure contextual knowledge to support your line of argument.",
+    "Write a concise judgement that directly answers the enquiry."
+  ];
+ 
+  const ao3Points = [
+    "Identify the main argument in a historian's interpretation.",
+    "Select evidence that supports or challenges that interpretation.",
+    "Weigh the interpretation against your own knowledge before reaching a judgement."
+  ];
+ 
+  return {
+    slideId:`${lessonId}-skill-focus`,
+    type:"skill-focus",
+    heading:"What you'll learn today",
+    aoTiles:[
+      { label:"AO1", points:ao1Points },
+      { label:"AO3", points:ao3Points }
+     ]
+  };
+}
+ 
+function getLessonContextContent(lesson){
+  const pack = lesson?.contentPack || {};
+  const existingBigPicture = String(lesson?.bigPictureContent || "").trim();
+  const existingCoreKnowledge = String(lesson?.coreKnowledgeContent || "").trim();
+  const fallbackBigPicture = String(pack.bigPicture || "").trim();
+  const fallbackCoreKnowledge = (pack.sf?.briefings || []).map(briefing=>String(briefing?.text || "").trim()).filter(Boolean).join("\n\n");
+  const heroSummary = [pack?.hero?.titleLine, pack?.hero?.subtitleLine].map(v=>String(v || "").trim()).filter(Boolean).join(" ");
+  const interpretationSummary = [pack?.interpretations?.A?.text, pack?.interpretations?.B?.text]
+    .map(v=>String(v || "").trim())
+    .filter(Boolean)
+    .slice(0,2)
+    .join("\n\n");
+  return {
+    bigPictureContent: existingBigPicture || fallbackBigPicture || heroSummary || "Use this section to summarise the wider context before evaluating the enquiry.",
+    coreKnowledgeContent: existingCoreKnowledge || fallbackCoreKnowledge || interpretationSummary || "Use this section to list secure factual knowledge you can deploy in evidence paragraphs."
+  };
+}
+
+function buildSlidesFromContentPack(lesson){
+  const pack = lesson?.contentPack;
+  if(!pack) return [];
+  const lessonContext = getLessonContextContent(lesson);
+  const lessonId = lesson.id;
+  const plan = getLessonInteractionPlan(lesson.id);
+  const quickCheckFromCheck = (slideId, check)=>({
+    slideId,
+    type:"quick-check",
+    heading:check.heading,
+    subheading:String(check.subheading || "").trim() || deriveSlideSubheading(check.prompt, "Focus: test the key claim"),
+    text:check.prompt,
+    options:check.options,
+    correctIndex:check.correctIndex,
+    feedback:[check.feedbackWrong, check.feedbackCorrect, check.feedbackWrong, check.feedbackWrong]
+  });
+ 
+  const slides = [
+    { slideId:`${lessonId}-hero`, type:"briefing", heading:"Intro", text:pack.hero?.titleLine ?? "" },
+    {
+      slideId:`${lessonId}-lesson-context`,
+      type:"lesson-context",
+      heading:"Lesson context",
+      bigPictureContent:lessonContext.bigPictureContent,
+      coreKnowledgeContent:lessonContext.coreKnowledgeContent
+     }
+  ];
+ 
+ 
+  const sfBriefings = getSfBriefingsForSlides(pack);
+  sfBriefings.forEach((briefing, index)=>{
+    const order = index + 1;
+    slides.push({
+      slideId:`${lessonId}-sf-b${order}`,
+      type:"briefing",
+      heading:briefing.heading,
+      subheading:String(briefing.subheading || "").trim() || deriveSlideSubheading(briefing.text, `Focus: ${extractFactorLabel(briefing.heading, `Briefing ${order}`)}`),
+      text:briefing.text
+    });
+    const check = (pack.sf?.checks || [])[index];
+    if(check){
+      slides.push(quickCheckFromCheck(`${lessonId}-sf-c${order}`, check));
+     }
+  });
+ 
+  const ambitionBriefing = pack.ambition?.briefings?.[0];
+  if(ambitionBriefing){
+    slides.push({
+      slideId:`${lessonId}-ambition-b1`,
+      type:"briefing",
+      heading:ambitionBriefing.heading,
+      subheading:String(ambitionBriefing.subheading || "").trim() || deriveSlideSubheading(ambitionBriefing.text, "Focus: apply this to an exam judgement"),
+      text:ambitionBriefing.text
+    });
+   }
+  // Ambition task panel removed from lesson flow by request.
+ 
+  if(pack.quickCheck){
+    if(plan === "A") slides.push(buildStrongestEvidenceFromQuickCheck(lesson, `${lessonId}-quick-check`, pack.quickCheck.heading || "Quick check"));
+    else if(plan === "D") slides.push(buildRankFactorsSlide(lesson, `${lessonId}-quick-check`, pack.quickCheck.heading || "Quick check"));
+    else slides.push(quickCheckFromCheck(`${lessonId}-quick-check`, pack.quickCheck));
+  }
+ 
+  const interpretationSlides = (key)=>{
+    const interpretation = pack.interpretations?.[key];
+    if(!interpretation) return [];
+    return [
+      { slideId:`${lessonId}-int${key}`, type:"interpretation", heading:`Extract ${key}`, text:interpretation.text },
+       {
+        slideId:`${lessonId}-int${key}-arg-identify`,
+        type:"arg-identify",
+        heading:`Extract ${key} exam skills`,
+        prompt:interpretation.argIdentify?.prompt,
+        options:interpretation.argIdentify?.options,
+        correctIndex:interpretation.argIdentify?.correctIndex,
+        feedbackCorrect:interpretation.argIdentify?.feedbackCorrect,
+        feedbackWrong:interpretation.argIdentify?.feedbackWrong
+       },
+       {
+        slideId:`${lessonId}-int${key}-evidence-support`,
+        type:"evidence-select",
+        purpose:"support",
+        heading:`Evidence-support ${key}`,
+        prompt:`Choose ${interpretation.evidenceSupport?.selectionLimit ?? 3} specific examples that best support Extract ${key}.`,
+        selectionLimit:interpretation.evidenceSupport?.selectionLimit,
+        statements:interpretation.evidenceSupport?.statements
+       },
+       {
+        slideId:`${lessonId}-int${key}-evidence-challenge`,
+        type:"evidence-select",
+        purpose:"challenge",
+        heading:`Evidence-challenge ${key}`,
+        prompt:`Choose ${interpretation.evidenceChallenge?.selectionLimit ?? 2} specific examples that best challenge Extract ${key}.`,
+        selectionLimit:interpretation.evidenceChallenge?.selectionLimit,
+        statements:interpretation.evidenceChallenge?.statements
+       }
+    ];
+  };
+ 
+  const hasInterpretationContent = ["A", "B"].some(key=>{
+    const text = pack.interpretations?.[key]?.text;
+    return typeof text === "string" && text.trim();
+  });
+  if(hasInterpretationContent){
+    slides.push({
+      slideId:`${lessonId}-interpretation-intro`,
+      type:"interpretation-intro",
+      heading:"30 mark interpretation practice",
+      text:"You are now moving into Extract A and Extract B. Read each extract carefully, then complete the exam-practice tasks that follow."
+    });
+  }
+ 
+  slides.push(...interpretationSlides("A"), ...interpretationSlides("B"));
+ 
+  if(pack.judgement){
+    if(plan === "B"){
+      slides.push(buildStrongestEvidenceFromJudgement(lesson, `${lessonId}-judgement`));
+    }else if(plan === "C"){
+      slides.push(buildRankFactorsFromJudgement(lesson, `${lessonId}-judgement`));
+    }else{
+      slides.push({
+        slideId:`${lessonId}-judgement`,
+        type:"judgement",
+        heading:"Judgement",
+        prompt:"Best overall judgement?",
+        options:pack.judgement.options,
+        bestIndex:pack.judgement.bestIndex,
+        feedbackCorrect:pack.judgement.feedbackCorrect,
+        feedbackWrong:pack.judgement.feedbackWrong,
+        evidencePick:pack.judgement.evidencePick
+      });
+     }
+    slides.push({
+      slideId:`${lessonId}-exam-transfer`,
+      type:"exam-transfer",
+      heading:"Exam transfer",
+      prompt:"Write a 2–3 sentence conclusion answering the enquiry. Use: (1) your judgement, (2) one supporting point, (3) one limitation.",
+      sentenceStarters:[
+        "Overall, it can be argued that…",
+        "This is mainly because…",
+        "However, it is important to note that…",
+        "Therefore, the extent of change/success was…"
+      ],
+      modelAnswer:buildExamTransferModelAnswer(lesson)
+    });
+   }
+ 
+  slides.push({ slideId:`${lessonId}-results`, type:"results", heading:"Results" });
+  return slides;
+}
+ 
+function slideHasContent(slide){
+  if(!slide || typeof slide !== "object") return false;
+  const hasText = (value)=>typeof value === "string" && value.trim().length > 0;
+  const hasItems = (value)=>Array.isArray(value) && value.length > 0;
+  const hasReadableItems = (value)=>hasItems(value) && value.some(item=>{
+    if(typeof item === "string") return item.trim().length > 0;
+    if(item && typeof item === "object") return hasText(item.text) || hasText(item.label) || hasText(item.heading);
+    return false;
+  });
+  if(slide.type === "results") return true;
+  if(slide.type === "lesson-context") return hasText(slide.bigPictureContent) || hasText(slide.coreKnowledgeContent);
+  if(slide.type === "quick-check" || slide.type === "arg-identify") return hasText(slide.prompt || slide.text) && hasReadableItems(slide.options);
+  if(slide.type === "evidence-select") return hasText(slide.prompt) && hasReadableItems(slide.statements);
+  if(slide.type === "strongest-evidence") return hasText(slide.prompt) && hasReadableItems(slide.statements);
+  if(slide.type === "rank-factors") return hasText(slide.prompt) && hasReadableItems(slide.items);
+  if(slide.type === "exam-transfer") return hasText(slide.prompt);
+  if(slide.type === "next-steps") return hasText(slide.text);
+  if(slide.type === "interpretation" || slide.type === "briefing" || slide.type === "interpretation-intro") return hasText(slide.text);
+  if(slide.type === "judgement") return hasText(slide.prompt) && hasReadableItems(slide.options);
+  return true;
+}
+ 
+function getLessonSlides(lesson){
+  if(!lesson) return [];
+  const generatedSlides = Array.isArray(lesson.slides) ? lesson.slides : buildSlidesFromContentPack(lesson);
+  let rawSlides = [...generatedSlides];
+  const hasLessonContextSlide = rawSlides.some(slide=>slide?.type === "lesson-context");
+  const hasLegacyContextSlides = rawSlides.some(slide=>slide?.type === "idea" || slide?.type === "briefing");
+  if(!hasLessonContextSlide && hasLegacyContextSlides){
+    const contextFields = getLessonContextContent(lesson);
+    if(contextFields.bigPictureContent || contextFields.coreKnowledgeContent){
+      rawSlides = [
+        {
+          slideId:`${lesson.id}-lesson-context`,
+          type:"lesson-context",
+          heading:"Lesson context",
+          bigPictureContent:contextFields.bigPictureContent,
+          coreKnowledgeContent:contextFields.coreKnowledgeContent
+        },
+        ...rawSlides.filter(slide=>slide?.type !== "idea" && slide?.type !== "briefing")
+      ];
+     }
+   }
+  const filteredSlides = rawSlides.filter(slideHasContent);
+  const baseSlides = filteredSlides.map((slide, index)=>ensureSlideMeta(slide, index));
+  const withResults = baseSlides.some(slide=>slide.type === "results")
+    ? baseSlides
+    : [...baseSlides, ensureSlideMeta({ type:"results", heading:"Results" }, baseSlides.length)];
+ 
+  let interpretationCount = 0;
+  return withResults.map(slide=>{
+    const nextSlide = { ...slide };
+    if(slide.type === "interpretation") interpretationCount += 1;
+    if(!Array.isArray(nextSlide.modes)){
+      if(nextSlide.minMode){
+        const minIndex = LESSON_MODES.indexOf(nextSlide.minMode);
+        nextSlide.modes = minIndex >= 0 ? LESSON_MODES.slice(minIndex) : getDefaultModesForSlide(nextSlide, interpretationCount);
+      }else{
+        nextSlide.modes = getDefaultModesForSlide(nextSlide, interpretationCount);
+       }
+    }
+    return nextSlide;
+  });
+}
+ 
+function getLessonAnswer(lessonId, slideId){
+  return lessonsNav.answers?.[lessonId]?.[slideId];
+}
+ 
+function setLessonAnswer(lessonId, slideId, value){
+  if(!lessonsNav.answers[lessonId]) lessonsNav.answers[lessonId] = {};
+  lessonsNav.answers[lessonId][slideId] = value;
+}
+ 
+function getStoredQuickCheckAnswer(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  if(!value || typeof value !== "object" || Array.isArray(value)) return null;
+  return Number.isInteger(value.value) ? value.value : null;
+}
+ 
+function getStoredBuildAnswerSelection(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  if(!value || typeof value !== "object" || Array.isArray(value)) return [];
+  return Array.isArray(value.value) ? value.value : [];
+ }
+ 
+function getStoredBuildAnswerChecked(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  return !!(value && typeof value === "object" && value.checked);
+}
+ 
+function getStoredArgIdentifyState(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  if(!value || typeof value !== "object" || Array.isArray(value)) return { value:null, checked:false };
+  const selectedIndex = Number.isInteger(value.value) ? value.value : null;
+  return { value:selectedIndex, checked:!!value.checked };
+}
+ 
+function getStoredEvidenceSelectState(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  if(!value || typeof value !== "object" || Array.isArray(value)) return { value:[], checked:false };
+  const selectedIds = Array.isArray(value.value) ? value.value : [];
+  return { value:selectedIds, checked:!!value.checked };
+}
+ 
+function getStoredJudgementState(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  if(!value || typeof value !== "object" || Array.isArray(value)){
+    return { optionIndex:null, optionChecked:false, evidenceValue:[], evidenceChecked:false };
+   }
+  return {
+    optionIndex: Number.isInteger(value.optionIndex) ? value.optionIndex : null,
+    optionChecked: !!value.optionChecked,
+    evidenceValue: Array.isArray(value.evidenceValue) ? value.evidenceValue : [],
+    evidenceChecked: !!value.evidenceChecked
+  };
+ }
+ 
+function getStoredStrongestEvidenceState(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  if(!value || typeof value !== "object" || Array.isArray(value)) return { selectedId:null, checked:false };
+  return { selectedId: typeof value.selectedId === "string" ? value.selectedId : null, checked: !!value.checked };
+}
+ 
+function getStoredRankFactorsState(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  if(!value || typeof value !== "object" || Array.isArray(value)) return { rankedIds:[], checked:false };
+  return { rankedIds: Array.isArray(value.rankedIds) ? value.rankedIds : [], checked: !!value.checked };
+}
+ 
+function getExamTransferWriteKey(lessonId, slideIndex){
+  return `LESSON_WRITE_${lessonId}_${slideIndex}`;
+}
+ 
+function getStoredExamTransferWriting(lessonId, slideIndex){
+  try{
+    return String(localStorage.getItem(getExamTransferWriteKey(lessonId, slideIndex)) || "");
+  }catch(_err){
+    return "";
+   }
+ }
+ 
+function setStoredExamTransferWriting(lessonId, slideIndex, value){
+  try{
+    localStorage.setItem(getExamTransferWriteKey(lessonId, slideIndex), String(value || ""));
+  }catch(_err){}
+}
+ 
+function getStoredExamTransferRevealState(lessonId, slideId){
+  const value = getLessonAnswer(lessonId, slideId);
+  return !!(value && typeof value === "object" && value.revealed);
+}
+ 
+const lessonKeyQuestionMap = Object.fromEntries(
+  lessonsData.flatMap(topic => topic.themes.flatMap(theme => theme.lessons.map(lesson => [lesson.id, {
+    keyQuestionId: lesson.keyQuestionId || 1,
+    keyQuestionTitle: lesson.keyQuestionTitle || `Key question for ${lesson.title || "this lesson"}`,
+    keyQuestionOverview: lesson.keyQuestionOverview || `Placeholder overview for ${lesson.title || "this lesson"}.`
+  }])))
+);
+ 
+ 
+ const LESSON_THEME_ALIASES = {
+   "social-cultural-change":"social-cultural",
+   "social-cultural":"social-cultural",
+   "political-authority":"political-authority",
+   "economic-development":"economic-development",
+   "opposition-control":"opposition-control"
+ };
+ 
+ function deriveLessonContextFields(lesson){
+   const pack = lesson?.contentPack || {};
+   const bigPictureFromPack = String(pack.bigPicture || "").trim();
+   const coreKnowledgeFromPack = (pack.sf?.briefings || []).map(briefing=>String(briefing?.text || "").trim()).filter(Boolean).join("\n\n");
+ 
+   const slides = Array.isArray(lesson?.slides) ? lesson.slides : [];
+   const bigPictureFromSlides = slides
+     .filter(slide=>slide?.type === "idea")
+     .map(slide=>String(slide?.text || "").trim())
+     .filter(Boolean)
+     .join("\n\n");
+   const coreKnowledgeFromSlides = slides
+     .filter(slide=>slide?.type === "briefing")
+     .map(slide=>String(slide?.text || "").trim())
+     .filter(Boolean)
+ 
+   lessonsData.forEach(topic=>{
+     const themeMap = new Map(requiredThemes.map(theme=>[theme.id, { ...theme, lessons:[] }]));
+ 
+     (Array.isArray(topic.themes) ? topic.themes : []).forEach(theme=>{
+       const normalizedThemeId = LESSON_THEME_ALIASES[theme.id] || theme.id;
+       const targetTheme = themeMap.get(normalizedThemeId) || themeMap.get("social-cultural");
+       const lessons = Array.isArray(theme.lessons) ? theme.lessons : [];
+       lessons.forEach(lesson=>{
+         const normalizedLessonThemeId = LESSON_THEME_ALIASES[lesson.themeId] || normalizedThemeId;
+         const finalTheme = themeMap.get(normalizedLessonThemeId) || targetTheme;
+         const contextFields = deriveLessonContextFields(lesson);
+         finalTheme.lessons.push({
+           ...lesson,
+           ...contextFields,
+           topicId: topic.id,
+           themeId: finalTheme.id
+         });
+       });
+     });
+ 
+     topic.themes = requiredThemes.map(theme=>themeMap.get(theme.id));
+   });
+ })();
+ 
+ const LESSON_REQUIRED_THEME_IDS = ["political-authority","economic-development","opposition-control","social-cultural"];
+ let lessonsValidatedOnce = false;
+ 
+ function validateLessonsArchitecture(){
+   if(lessonsValidatedOnce) return;
+   lessonsValidatedOnce = true;
+ 
+   const homepageTopicIds = TOPICS.map(topic=>topic.id);
+   if(lessonsData.length !== homepageTopicIds.length){
+     console.warn("[Lessons] Expected 4 lesson topics to match homepage tiles.", {
+       expected: homepageTopicIds,
+       actual: lessonsData.map(topic=>topic.id)
+     });
+   }
+ 
+   lessonsData.forEach(topic=>{
+     const themeIds = Array.isArray(topic.themes) ? topic.themes.map(theme=>theme.id) : [];
+     const missingThemes = LESSON_REQUIRED_THEME_IDS.filter(id=>!themeIds.includes(id));
+     if(missingThemes.length){
+       console.warn("[Lessons] Topic is missing required theme buckets.", { topicId:topic.id, missingThemes, themeIds });
+     }
+ 
+     (topic.themes || []).forEach(theme=>{
+       (theme.lessons || []).forEach(lesson=>{
+         const badTopic = !homepageTopicIds.includes(lesson.topicId || topic.id);
+ function getLessonAlphaLabel(index){
+   const alphabet = "abcdefghijklmnopqrstuvwxyz";
+   let value = Number(index);
+   if(!Number.isFinite(value) || value < 0) return "a";
+   let label = "";
+   do{
+     label = alphabet[value % 26] + label;
+     value = Math.floor(value / 26) - 1;
+   }while(value >= 0);
+   return label;
+ }
+ 
+ function getThemeChipLabel(theme){
+   const title = String(theme?.title || "").trim();
+   if(!title) return "Theme";
+   if(/political/i.test(title)) return "Political";
+   if(/economic/i.test(title)) return "Economic";
+   if(/opposition/i.test(title)) return "Opposition";
+   if(/social/i.test(title)) return "Social";
+   return title.split(/\s|&/).filter(Boolean)[0] || title;
+ }
+ 
+ function buildTopicOverview(topic){
+   if(topic?.topicOverview?.tension) return String(topic.topicOverview.tension);
+   const themes = (topic?.themes || []).map(theme=>theme.title).filter(Boolean).join(", ");
+  return `This topic explores the key debates across ${themes || "core themes"}, helping you answer long-form questions.`;
+ }
+ 
+ function computeTopicJourneyProgress(topic){
+   const lessons = getTopicLessons(topic);
+   if(!lessons.length) return 0;
+   const total = lessons.reduce((sum, lesson)=>{
+     const state = getLessonJourneyState(lesson.id);
+     if(state === "completed") return sum + 1;
+     if(state === "in-progress") return sum + 0.5;
+     return sum;
+   }, 0);
+   return Math.round((total / lessons.length) * 100);
+ }
+ 
+ function getTimelineRangeStyle(topicBounds, selectedBounds){
+   if(!Number.isFinite(topicBounds?.start) || !Number.isFinite(topicBounds?.end) || topicBounds.end <= topicBounds.start){
+     return 'left:0%;width:100%';
+   }
+   if(!Number.isFinite(selectedBounds?.start) || !Number.isFinite(selectedBounds?.end)) return 'left:0%;width:100%';
+   const total = topicBounds.end - topicBounds.start;
+   const leftPct = Math.max(0, Math.min(100, ((selectedBounds.start - topicBounds.start) / total) * 100));
+   const rightPct = Math.max(leftPct, Math.max(0, Math.min(100, ((selectedBounds.end - topicBounds.start) / total) * 100)));
+   return `left:${leftPct.toFixed(2)}%;width:${Math.max(2, rightPct - leftPct).toFixed(2)}%`;
+ }
+ 
+ function splitTopicTitleAndYears(rawTitle){
+   const title = String(rawTitle || "Topic").trim();
+   const match = title.match(/^(.*?)(\s*\(([^)]+)\)\s*)$/);
+   if(!match) return { title, years:"" };
+   return { title:match[1].trim(), years:`(${match[3]})` };
+ }
+ 
+ function getHomeTopicTitle(topic){
+   if(!topic) return "Topic";
+   const homeTopicTitle = String(FACT_BANK?.[topic.id]?.title || "").trim();
+   return homeTopicTitle || String(topic.title || "Topic").trim();
+ }
+ 
+ function buildTopicDescriptor(topic){
+   const lessons = getTopicLessons(topic);
+   const keyQuestions = lessons.map(lesson=>String(lesson.keyQuestionTitle || "").trim()).filter(Boolean);
+   if(keyQuestions.length){
+     const seed = keyQuestions.slice(0, 2).join("; ");
+     return seed.length <= 120 ? seed : `${seed.slice(0, 117).trimEnd()}...`;
+   }
+   const themes = (topic?.themes || []).map(theme=>String(theme.title || "").trim()).filter(Boolean).slice(0, 3);
+  const fallback = `Key debates across ${themes.join(", ")} to support extended responses and sources.`;
+   return fallback.length <= 120 ? fallback : `${fallback.slice(0, 117).trimEnd()}...`;
+ }
+ 
+ function getTopicProgressSummary(topic){
+   const lessons = getTopicLessons(topic);
+   const totalLessons = lessons.length;
+   if(!totalLessons) return { percent:0, completedLessons:0, totalLessons:0, weighted:0 };
+   const weighted = lessons.reduce((sum, lesson)=>{
+     const state = getLessonJourneyState(lesson.id);
+     if(state === "completed") return sum + 1;
+     if(state === "in-progress") return sum + 0.5;
+     return sum;
+   }, 0);
+   const completedLessons = lessons.reduce((sum, lesson)=>sum + (getLessonJourneyState(lesson.id) === "completed" ? 1 : 0), 0);
+   return {
+     percent:Math.round((weighted / totalLessons) * 100),
+     completedLessons,
+     totalLessons,
+     weighted
+   };
+ }
+ 
+ function getTopicStatusChip(summary){
+   if(summary.totalLessons > 0 && summary.completedLessons === summary.totalLessons) return { label:"Completed", state:"completed" };
+   if(summary.weighted > 0) return { label:"In progress", state:"in-progress" };
+   return { label:"Not started", state:"not-started" };
+ }
+ 
+ function getMostRecentInProgressLesson(){
+   const store = getLessonActivityStore();
+   const byLesson = store?.byLesson && typeof store.byLesson === "object" ? store.byLesson : {};
+   let latest = null;
+   lessonsData.forEach(topic=>{
+     if(!isTopicEnabled(topic.id)) return;
+     (topic.themes || []).forEach(theme=>{
+       (theme.lessons || []).forEach(lesson=>{
+         const entry = normalizeLessonProgressEntry(byLesson[lesson.id]);
+         if(!entry || entry.completed) return;
+         const started = Number.isFinite(entry.lastStartedAt) || typeof entry.lastAttemptDate === "string" || Number.isFinite(entry.lastScorePct) || Number.isFinite(entry.bestScorePct);
+         if(!started) return;
+         const stamp = Number(entry.lastStartedAt) || Number(entry.updatedAt) || Date.parse(entry.lastAttemptDate || "") || 0;
+         if(!latest || stamp > latest.stamp){
+           latest = { stamp, lesson, topic, theme };
+         }
+       });
+     });
+   });
+   return latest;
+ }
+ 
+ function renderTopicLessonsView(root, topic){
+   if(!topic){
+     lessonsNav.view = "topics";
+     lessonsNav.topicId = null;
+     renderLessons();
+     return;
+   }
+   const lessons = getTopicLessons(topic);
+   const summary = getTopicProgressSummary(topic);
+   const status = getTopicStatusChip(summary);
+   const titleParts = splitTopicTitleAndYears(getHomeTopicTitle(topic));
+   const timelineImage = TOPIC_TIMELINE_IMAGES[topic.id] || "";
+ 
+   root.innerHTML = `
+     <div class="card lessonsMenuCard">
+       <div class="lessonsHeader">
+         <h2 class="lessonsTitle"><svg class="lessonsTitleIcon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="4" width="18" height="13" rx="2"></rect><path d="M6 8h12"></path><path d="M6 12h7"></path><path d="m13 19 6-6"></path><path d="m18.4 12.6 1.9 1.9"></path></svg><span class="lessonsTitleText">Lessons</span></h2>
+       </div>
+       <div class="lessonTopControls">
+         <button class="btn" id="returnToTopicsBtn" type="button">← Return to topics</button>
+         <span class="pill">${escapeHtml(titleParts.title || "Topic")}</span>
+       </div>
+       <article class="lessonTopicItem" data-topic-panel="${topic.id}" open>
+         <div class="lessonTopicSummary" aria-label="${escapeHtml(`${titleParts.title} ${titleParts.years}`.trim())}">
+           <div class="topicLead">
